@@ -25,7 +25,7 @@
         }
 
         .card {
-            max-width: 850px;
+            max-width: 880px;
             width: 100%;
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(16px) saturate(180%);
@@ -76,7 +76,6 @@
             flex-wrap: wrap;
         }
 
-        
         .owner-info h1 i {
             color: #fbbf24;
             font-size: 1.6rem;
@@ -174,52 +173,83 @@
             white-space: nowrap;
         }
 
-        .course-link {
-            background: #0b1f36;
-            color: white;
-            border: none;
-            padding: 0.65rem 1.6rem;
-            border-radius: 60px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            display: inline-flex;
+        /* ======== دکمه‌های دوگانه ======== */
+        .course-actions {
+            display: flex;
             align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-            transition: 0.2s ease;
-            box-shadow: 0 6px 14px rgba(11, 31, 54, 0.2);
-            letter-spacing: 0.2px;
-            white-space: nowrap;
+            gap: 0.7rem;
+            flex-wrap: wrap;
         }
 
-        .course-link i {
-            font-size: 0.9rem;
+        .btn-syllabus,
+        .btn-assignment {
+            border: none;
+            padding: 0.6rem 1.3rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .btn-syllabus i,
+        .btn-assignment i {
+            font-size: 0.85rem;
             transition: transform 0.2s;
         }
 
-        .course-link:hover {
-            background: #1e3455;
+        .btn-syllabus:hover,
+        .btn-assignment:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 22px -8px #0b1f36b0;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
         }
 
-        .course-link:hover i {
-            transform: translateX(-5px);
+        .btn-syllabus:hover i,
+        .btn-assignment:hover i {
+            transform: scale(1.1);
         }
 
-        .course-link:active {
-            transform: scale(0.96);
+        .btn-syllabus:active,
+        .btn-assignment:active {
+            transform: scale(0.95);
         }
 
-        /* دکمه های لینک با رنگ های خاص برای هر درس (اختیاری) */
-        .course-item:nth-child(1) .course-link {
-            background: #1d3b5c;
+        /* رنگ‌های اختصاصی برای هر دوره */
+        /* دوره ۱: LLM */
+        .course-item:nth-child(1) .btn-syllabus {
+            background: linear-gradient(135deg, #1e3a5f, #2a4a7a);
+            color: white;
         }
-        .course-item:nth-child(2) .course-link {
-            background: #2a4a6e;
+        .course-item:nth-child(1) .btn-assignment {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            color: white;
         }
-        .course-item:nth-child(3) .course-link {
-            background: #1f3f5c;
+
+        /* دوره ۲: پایگاه داده */
+        .course-item:nth-child(2) .btn-syllabus {
+            background: linear-gradient(135deg, #1a5276, #1f618d);
+            color: white;
+        }
+        .course-item:nth-child(2) .btn-assignment {
+            background: linear-gradient(135deg, #2e86c1, #1a5276);
+            color: white;
+        }
+
+        /* دوره ۳: برنامه‌نویسی پیشرفته */
+        .course-item:nth-child(3) .btn-syllabus {
+            background: linear-gradient(135deg, #6c3483, #8e44ad);
+            color: white;
+        }
+        .course-item:nth-child(3) .btn-assignment {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
         }
 
         /* فوتر کوچک */
@@ -229,7 +259,7 @@
             font-size: 0.8rem;
             color: #3f5577;
             opacity: 0.7;
-            border-top: 1px solid rgba(0,0,0,0.02);
+            border-top: 1px solid rgba(0, 0, 0, 0.02);
             padding-top: 1.8rem;
             display: flex;
             justify-content: center;
@@ -243,7 +273,46 @@
         }
 
         /* واکنش‌گرایی کامل */
-        @media (max-width: 640px) {
+        @media (max-width: 700px) {
+            .course-item {
+                border-radius: 30px;
+                padding: 0.9rem 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.8rem;
+                background: rgba(255, 255, 255, 0.6);
+            }
+
+            .course-info {
+                flex: 1 1 auto;
+                gap: 0.7rem;
+            }
+
+            .course-actions {
+                justify-content: stretch;
+                gap: 0.6rem;
+            }
+
+            .btn-syllabus,
+            .btn-assignment {
+                flex: 1;
+                justify-content: center;
+                padding: 0.7rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .course-badge {
+                align-self: flex-start;
+                font-size: 0.7rem;
+                padding: 0.2rem 0.9rem;
+            }
+
+            .course-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+            }
+
             .card {
                 padding: 1.6rem 1.2rem;
                 border-radius: 32px;
@@ -264,48 +333,16 @@
             .owner-info h1 {
                 font-size: 1.6rem;
             }
-
-            .course-item {
-                border-radius: 30px;
-                padding: 0.7rem 0.7rem 0.7rem 1.2rem;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.6rem;
-                background: rgba(255, 255, 255, 0.6);
-            }
-
-            .course-info {
-                flex: 1 1 auto;
-                gap: 0.7rem;
-            }
-
-            .course-link {
-                justify-content: center;
-                padding: 0.7rem 1rem;
-                width: 100%;
-                border-radius: 60px;
-            }
-
-            .course-badge {
-                align-self: flex-start;
-                font-size: 0.7rem;
-                padding: 0.2rem 0.9rem;
-            }
-
-            .course-icon {
-                width: 42px;
-                height: 42px;
-                font-size: 1.1rem;
-            }
         }
 
         @media (max-width: 400px) {
             .course-title {
                 font-size: 0.95rem;
             }
-            .course-link {
-                font-size: 0.8rem;
-                padding: 0.6rem 0.8rem;
+            .btn-syllabus,
+            .btn-assignment {
+                font-size: 0.7rem;
+                padding: 0.6rem 0.6rem;
             }
             .owner-info h1 {
                 font-size: 1.3rem;
@@ -336,37 +373,7 @@
         <!-- لیست دوره‌ها -->
         <div class="courses-grid">
 
-            <!-- دوره ۱: پایگاه داده -->
-            <div class="course-item">
-                <div class="course-info">
-                    <div class="course-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <span class="course-title">پایگاه داده</span>
-                    <span class="course-badge"><i class="far fa-clock"></i> 4041</span>
-                </div>
-                <a href="#" class="course-link" target="_blank">
-                    <span>مشاهده دوره</span>
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-            </div>
-
-            <!-- دوره ۲: برنامه‌نویسی پیشرفته -->
-            <div class="course-item">
-                <div class="course-info">
-                    <div class="course-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <span class="course-title">برنامه‌نویسی پیشرفته</span>
-                    <span class="course-badge"><i class="far fa-star"></i> 4042</span>
-                </div>
-                <a href="#" class="course-link" target="_blank">
-                    <span>مشاهده دوره</span>
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-            </div>
-
-            <!-- دوره ۳: مهندسی مدل‌های زبانی بزرگ (LLM) -->
+            <!-- دوره ۱: مهندسی مدل‌های زبانی بزرگ (LLM) - اولین -->
             <div class="course-item">
                 <div class="course-info">
                     <div class="course-icon">
@@ -375,10 +382,52 @@
                     <span class="course-title">مهندسی مدل‌های زبانی بزرگ</span>
                     <span class="course-badge"><i class="fas fa-microchip"></i> 4051</span>
                 </div>
-                <a href="#" class="course-link" target="_blank">
-                    <span>مشاهده دوره</span>
-                    <i class="fas fa-arrow-left"></i>
-                </a>
+                <div class="course-actions">
+                    <a href="#" class="btn-syllabus" target="_blank">
+                        <i class="fas fa-book-open"></i> پیش‌برنامه
+                    </a>
+                    <a href="#" class="btn-assignment" target="_blank">
+                        <i class="fas fa-paper-plane"></i> ورود به سایت ارسال تمرین
+                    </a>
+                </div>
+            </div>
+
+            <!-- دوره ۲: پایگاه داده -->
+            <div class="course-item">
+                <div class="course-info">
+                    <div class="course-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <span class="course-title">پایگاه داده</span>
+                    <span class="course-badge"><i class="far fa-clock"></i> 4041</span>
+                </div>
+                <div class="course-actions">
+                    <a href="#" class="btn-syllabus" target="_blank">
+                        <i class="fas fa-book-open"></i> پیش‌برنامه
+                    </a>
+                    <a href="#" class="btn-assignment" target="_blank">
+                        <i class="fas fa-paper-plane"></i> ورود به سایت ارسال تمرین
+                    </a>
+                </div>
+            </div>
+
+            <!-- دوره ۳: برنامه‌نویسی پیشرفته -->
+            <div class="course-item">
+                <div class="course-info">
+                    <div class="course-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <span class="course-title">برنامه‌نویسی پیشرفته</span>
+                    <span class="course-badge"><i class="far fa-star"></i> 4042</span>
+                </div>
+                <div class="course-actions">
+                    <a href="#" class="btn-syllabus" target="_blank">
+                        <i class="fas fa-book-open"></i> پیش‌برنامه
+                    </a>
+                    <a href="#" class="btn-assignment" target="_blank">
+                        <i class="fas fa-paper-plane"></i> ورود به سایت ارسال تمرین
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -386,7 +435,7 @@
         <!-- فوتر با پیام شخصی -->
         <div class="footer-note">
             <i class="fas fa-brain"></i>
-            <span>دانشکده ریاضی-دانشگاه شهید بهشتی</span>
+            <span>دانشکده ریاضی - دانشگاه شهید بهشتی</span>
             <i class="fas fa-arrow-left"></i>
         </div>
 
