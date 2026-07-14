@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -15,7 +16,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(145deg, #f5f7fa 0%, #e9edf5 100%);
+            background: linear-gradient(145deg, #f0f4fc 0%, #d9e2ef 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -25,18 +26,18 @@
         }
 
         .card {
-            max-width: 880px;
+            max-width: 960px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            background-color: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background-color: rgba(255, 255, 255, 0.7);
             border-radius: 48px;
-            box-shadow: 0 30px 50px -20px rgba(0, 20, 40, 0.3),
-                        0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+            box-shadow: 0 30px 60px -20px rgba(0, 20, 40, 0.35),
+                        0 0 0 1px rgba(255, 255, 255, 0.7) inset;
             padding: 2.5rem 2rem;
-            transition: all 0.25s ease;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.2s;
         }
 
         /* هدر اختصاصی */
@@ -45,65 +46,145 @@
             align-items: center;
             gap: 1.2rem;
             flex-wrap: wrap;
-            margin-bottom: 2.5rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            border-bottom: 2px solid rgba(43, 58, 103, 0.08);
             padding-bottom: 1.5rem;
         }
 
         .avatar {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #2b3a67, #1d2b4b);
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(145deg, #1d2b4b, #2b3a67);
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2.2rem;
-            font-weight: 600;
-            box-shadow: 0 12px 18px -8px rgba(27, 43, 80, 0.25);
+            font-size: 2.4rem;
+            box-shadow: 0 14px 20px -10px rgba(27, 43, 80, 0.3);
             flex-shrink: 0;
         }
 
         .owner-info h1 {
-            font-size: 1.9rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: #0b1a2f;
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             flex-wrap: wrap;
         }
 
         .owner-info h1 i {
             color: #fbbf24;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
         }
 
         .owner-info .sub {
-            font-size: 0.95rem;
-            color: #3a4a66;
-            background: rgba(0, 0, 0, 0.03);
-            padding: 0.25rem 1rem 0.25rem 0;
+            font-size: 1rem;
+            color: #2c405e;
+            background: rgba(0, 0, 0, 0.02);
+            padding: 0.25rem 1.2rem 0.25rem 0;
             border-radius: 40px;
             display: inline-block;
             margin-top: 0.2rem;
             font-weight: 400;
-            letter-spacing: 0.3px;
         }
 
         .owner-info .sub i {
+            margin-left: 0.5rem;
+            color: #3b5b8c;
+        }
+
+        .owner-info .university {
+            font-size: 0.85rem;
+            color: #3a5a7a;
+            background: rgba(43, 58, 103, 0.06);
+            padding: 0.15rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 0.1rem;
+            font-weight: 400;
+        }
+
+        .owner-info .university i {
             margin-left: 0.4rem;
             color: #3b5b8c;
         }
 
-        /* لیست دوره‌ها با استایل کارت‌های مدرن */
+        /* ===== دسته‌بندی جدید با هدرهای نیم‌سال ===== */
+        .semester-group {
+            margin-top: 1.8rem;
+        }
+
+        .semester-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem 0.5rem 1.8rem;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            width: fit-content;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: all 0.2s;
+        }
+        .semester-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .semester-header i {
+            font-size: 1.2rem;
+        }
+
+        .semester-header span {
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+            font-weight: 600;
+        }
+
+        /* رنگ‌های خاص برای هر نیم‌سال */
+        .semester-group:nth-child(1) .semester-header {
+            background: linear-gradient(135deg, #fde68a, #fcd34d);
+            color: #78350f;
+            border-color: #fbbf24;
+        }
+        .semester-group:nth-child(2) .semester-header {
+            background: linear-gradient(135deg, #a7f3d0, #6ee7b7);
+            color: #064e3b;
+            border-color: #34d399;
+        }
+        .semester-group:nth-child(3) .semester-header {
+            background: linear-gradient(135deg, #bfdbfe, #93c5fd);
+            color: #1e3a8a;
+            border-color: #60a5fa;
+        }
+        .semester-group:nth-child(4) .semester-header {
+            background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+            color: #831843;
+            border-color: #f472b6;
+        }
+
+        .semester-header .badge-code {
+            background: rgba(255,255,255,0.5);
+            padding: 0.1rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+        }
+
+        /* لیست دوره‌ها */
         .courses-grid {
             display: flex;
             flex-direction: column;
-            gap: 1.1rem;
-            margin-top: 0.5rem;
+            gap: 1rem;
+            margin-top: 0.2rem;
+            padding-right: 0.2rem;
         }
 
         .course-item {
@@ -123,9 +204,9 @@
         }
 
         .course-item:hover {
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 14px 26px -12px rgba(0, 20, 40, 0.15);
-            border-color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 14px 28px -12px rgba(0, 20, 40, 0.18);
+            border-color: rgba(255, 255, 255, 0.95);
             transform: scale(1.01) translateY(-2px);
         }
 
@@ -133,18 +214,19 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            flex: 1 1 180px;
+            flex: 1 1 200px;
+            flex-wrap: wrap;
         }
 
         .course-icon {
             width: 48px;
             height: 48px;
-            background: rgba(30, 58, 95, 0.08);
+            background: rgba(30, 58, 95, 0.07);
             border-radius: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             color: #1d3b5c;
             transition: 0.2s;
             flex-shrink: 0;
@@ -157,23 +239,31 @@
 
         .course-title {
             font-weight: 600;
-            font-size: 1.12rem;
-            color: #12213a;
+            font-size: 1.1rem;
+            color: #0e1f38;
             letter-spacing: -0.2px;
         }
 
-        .course-badge {
+        .course-note {
+            font-size: 0.7rem;
+            color: #4a5f7a;
+            background: rgba(0,0,0,0.03);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .course-faculty {
+            font-size: 0.7rem;
+            color: #4a5f7a;
             background: rgba(43, 58, 103, 0.06);
-            padding: 0.3rem 1rem;
-            border-radius: 60px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #1f375b;
+            padding: 0.15rem 0.8rem;
+            border-radius: 40px;
             border: 1px solid rgba(43, 58, 103, 0.08);
             white-space: nowrap;
         }
 
-        /* ======== دکمه‌های دوگانه ======== */
+        /* دکمه‌ها با رنگ‌های متفاوت برای هر ترم */
         .course-actions {
             display: flex;
             align-items: center;
@@ -186,14 +276,14 @@
             border: none;
             padding: 0.6rem 1.3rem;
             border-radius: 60px;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.85rem;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             text-decoration: none;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             letter-spacing: 0.2px;
             white-space: nowrap;
             cursor: pointer;
@@ -208,7 +298,7 @@
         .btn-syllabus:hover,
         .btn-assignment:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
         }
 
         .btn-syllabus:hover i,
@@ -221,58 +311,87 @@
             transform: scale(0.95);
         }
 
-        /* رنگ‌های اختصاصی برای هر دوره */
-        /* دوره ۱: LLM */
-        .course-item:nth-child(1) .btn-syllabus {
-            background: linear-gradient(135deg, #1e3a5f, #2a4a7a);
+        /* ===== رنگ‌های دکمه‌ها بر اساس ترم ===== */
+        /* ترم ۱ (نیم‌سال اول ۱۴۰۶-۱۴۰۵) - طلایی/نارنجی */
+        .semester-group:nth-child(1) .btn-syllabus {
+            background: linear-gradient(135deg, #d97706, #b45309);
             color: white;
         }
-        .course-item:nth-child(1) .btn-assignment {
-            background: linear-gradient(135deg, #e67e22, #d35400);
+        .semester-group:nth-child(1) .btn-assignment {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
             color: white;
         }
-
-        /* دوره ۲: پایگاه داده */
-        .course-item:nth-child(2) .btn-syllabus {
-            background: linear-gradient(135deg, #1a5276, #1f618d);
-            color: white;
-        }
-        .course-item:nth-child(2) .btn-assignment {
-            background: linear-gradient(135deg, #2e86c1, #1a5276);
+        .semester-group:nth-child(1) .btn-syllabus i,
+        .semester-group:nth-child(1) .btn-assignment i {
             color: white;
         }
 
-        /* دوره ۳: برنامه‌نویسی پیشرفته */
-        .course-item:nth-child(3) .btn-syllabus {
-            background: linear-gradient(135deg, #6c3483, #8e44ad);
+        /* ترم ۲ (نیم‌سال دوم ۱۴۰۵-۱۴۰۴) - سبز */
+        .semester-group:nth-child(2) .btn-syllabus {
+            background: linear-gradient(135deg, #059669, #047857);
             color: white;
         }
-        .course-item:nth-child(3) .btn-assignment {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        .semester-group:nth-child(2) .btn-assignment {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+        .semester-group:nth-child(2) .btn-syllabus i,
+        .semester-group:nth-child(2) .btn-assignment i {
             color: white;
         }
 
-        /* فوتر کوچک */
+        /* ترم ۳ (نیم‌سال اول ۱۴۰۴-۱۴۰۵) - آبی */
+        .semester-group:nth-child(3) .btn-syllabus {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+        }
+        .semester-group:nth-child(3) .btn-assignment {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+        .semester-group:nth-child(3) .btn-syllabus i,
+        .semester-group:nth-child(3) .btn-assignment i {
+            color: white;
+        }
+
+        /* ترم ۴ (نیم‌سال دوم ۱۴۰۳-۱۴۰۴) - زرد با متن تیره */
+        .semester-group:nth-child(4) .btn-syllabus {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+            color: #78350f !important;
+        }
+        .semester-group:nth-child(4) .btn-assignment {
+            background: linear-gradient(135deg, #fcd34d, #fbbf24) !important;
+            color: #78350f !important;
+        }
+        .semester-group:nth-child(4) .btn-syllabus i,
+        .semester-group:nth-child(4) .btn-assignment i {
+            color: #78350f !important;
+        }
+        /* حالت hover برای ترم ۴ */
+        .semester-group:nth-child(4) .btn-syllabus:hover,
+        .semester-group:nth-child(4) .btn-assignment:hover {
+            background: linear-gradient(135deg, #fcd34d, #fbbf24) !important;
+        }
+
         .footer-note {
-            margin-top: 2.5rem;
+            margin-top: 2.8rem;
             text-align: center;
-            font-size: 0.8rem;
-            color: #3f5577;
-            opacity: 0.7;
-            border-top: 1px solid rgba(0, 0, 0, 0.02);
-            padding-top: 1.8rem;
+            font-size: 0.85rem;
+            color: #3a5075;
+            opacity: 0.8;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+            padding-top: 2rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
         }
 
         .footer-note i {
-            color: #a0b8d6;
+            color: #8aa3c9;
         }
 
-        /* واکنش‌گرایی کامل */
         @media (max-width: 700px) {
             .course-item {
                 border-radius: 30px;
@@ -282,17 +401,15 @@
                 gap: 0.8rem;
                 background: rgba(255, 255, 255, 0.6);
             }
-
             .course-info {
                 flex: 1 1 auto;
                 gap: 0.7rem;
+                flex-wrap: wrap;
             }
-
             .course-actions {
                 justify-content: stretch;
                 gap: 0.6rem;
             }
-
             .btn-syllabus,
             .btn-assignment {
                 flex: 1;
@@ -300,38 +417,42 @@
                 padding: 0.7rem 0.8rem;
                 font-size: 0.8rem;
             }
-
-            .course-badge {
-                align-self: flex-start;
-                font-size: 0.7rem;
-                padding: 0.2rem 0.9rem;
-            }
-
             .course-icon {
                 width: 42px;
                 height: 42px;
                 font-size: 1.1rem;
             }
-
             .card {
                 padding: 1.6rem 1.2rem;
                 border-radius: 32px;
             }
-
             .profile-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0.6rem;
             }
-
             .avatar {
                 width: 60px;
                 height: 60px;
                 font-size: 1.8rem;
             }
-
             .owner-info h1 {
-                font-size: 1.6rem;
+                font-size: 1.7rem;
+            }
+            .semester-header {
+                font-size: 0.9rem;
+                padding: 0.4rem 1rem 0.4rem 1.2rem;
+            }
+            .semester-header span {
+                font-size: 0.9rem;
+            }
+            .course-note {
+                font-size: 0.65rem;
+                white-space: normal;
+            }
+            .course-faculty {
+                font-size: 0.65rem;
+                white-space: normal;
             }
         }
 
@@ -345,7 +466,10 @@
                 padding: 0.6rem 0.6rem;
             }
             .owner-info h1 {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
+            }
+            .semester-header span {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -353,10 +477,10 @@
 <body>
     <div class="card">
 
-        <!-- هدر: معرفی میلاد وزان -->
+        <!-- هدر -->
         <div class="profile-header">
             <div class="avatar">
-                <span>م</span>
+                <i class="fas fa-user-graduate"></i>
             </div>
             <div class="owner-info">
                 <h1>
@@ -365,109 +489,135 @@
                 </h1>
                 <div class="sub">
                     <i class="fas fa-chalkboard-teacher"></i>
-                    لیست دروس
+                    دسته‌بندی دروس بر اساس نیم‌سال
+                </div>
+                <div class="university">
+                    <i class="fas fa-university"></i>
+                    دانشگاه شهید بهشتی
                 </div>
             </div>
         </div>
 
-        <!-- لیست دوره‌ها -->
-        <div class="courses-grid">
+        <!-- ========== دسته‌بندی بر اساس نیم‌سال ========== -->
 
-            <!-- دوره ۱: مهندسی مدل‌های زبانی بزرگ (LLM) - اولین -->
-            <div class="course-item">
-                <div class="course-info">
-                    <div class="course-icon">
-                        <i class="fas fa-robot"></i>
+        <!-- گروه ۱: نیم‌سال اول ۱۴۰۶-۱۴۰۵ -->
+        <div class="semester-group">
+            <div class="semester-header">
+                <i class="fas fa-calendar-alt"></i>
+                <span>نیم‌سال اول ۱۴۰۶-۱۴۰۵</span>
+                <span class="badge-code">📚</span>
+            </div>
+            <div class="courses-grid">
+                <!-- دوره LLM -->
+                <div class="course-item">
+                    <div class="course-info">
+                        <div class="course-icon"><i class="fas fa-robot"></i></div>
+                        <span class="course-title">مهندسی مدل‌های زبانی بزرگ</span>
+                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                        <span class="course-note"><i class="fas fa-info-circle"></i> در سامانه بهستان با عنوان «سیستم‌های خبره» ارائه شده است</span>
                     </div>
-                    <span class="course-title">مهندسی مدل‌های زبانی بزرگ</span>
-                    <span class="course-badge"><i class="fas fa-microchip"></i> 4051</span>
+                    <div class="course-actions">
+                        <a href="https://llm.c-cs.ir" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
+                        <a href="https://llmhw.c-cs.ir" class="btn-assignment" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
+                    </div>
                 </div>
-                <div class="course-actions">
-                    <a href="https://llm.c-cs.ir" class="btn-syllabus" target="_blank">
-                        <i class="fas fa-book-open"></i> پیش‌برنامه
-                    </a>
-                    <a href="https://llmhw.c-cs.ir" class="btn-assignment" target="_blank">
-                        <i class="fas fa-paper-plane"></i> ورود به سایت ارسال تمرین
-                    </a>
+                <!-- دوره پایگاه داده -->
+                <div class="course-item">
+                    <div class="course-info">
+                        <div class="course-icon"><i class="fas fa-database"></i></div>
+                        <span class="course-title">پایگاه داده</span>
+                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                    </div>
+                    <div class="course-actions">
+                        <a href="https://db.c-cs.ir" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
+                        <a href="https://dbhw.c-cs.ir" class="btn-assignment" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
+                    </div>
                 </div>
             </div>
-
-            <!-- دوره ۲: پایگاه داده -->
-            <div class="course-item">
-                <div class="course-info">
-                    <div class="course-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <span class="course-title">پایگاه داده</span>
-                    <span class="course-badge"><i class="far fa-clock"></i> 4051</span>
-                </div>
-                <div class="course-actions">
-                    <a href="https://db.c-cs.ir" class="btn-syllabus" target="_blank">
-                        <i class="fas fa-book-open"></i> پیش‌برنامه
-                    </a>
-                    <a href="https://dbhw.c-cs.ir" class="btn-assignment" target="_blank">
-                        <i class="fas fa-paper-plane"></i> ورود به سایت ارسال تمرین
-                    </a>
-                </div>
-            </div>
-
-            <div class="course-item">
-                <div class="course-info">
-                    <div class="course-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <span class="course-title">پایگاه داده</span>
-                    <span class="course-badge"><i class="far fa-clock"></i> 4041</span>
-                </div>
-                <div class="course-actions">
-                    <a href="https://4041db.c-cs.ir" class="btn-syllabus" target="_blank">
-                        <i class="fas fa-book-open"></i> پیش‌برنامه
-                    </a>
-                    <a href="https://db4041.c-cs.ir" class="btn-assignment" target="_blank">
-                        <i class="fas fa-paper-plane"></i> ورود به سایت ارسال تمرین
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="course-item">
-                <div class="course-info">
-                    <div class="course-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <span class="course-title">پایگاه داده</span>
-                    <span class="course-badge"><i class="far fa-clock"></i> 4032</span>
-                </div>
-                <div class="course-actions">
-                    <a href="https://db4032.miladai.ir" class="btn-syllabus" target="_blank">
-                        <i class="fas fa-book-open"></i> پیش‌برنامه
-                    </a>
-                    
-                </div>
-            </div>
-
-            <!-- دوره ۳: برنامه‌نویسی پیشرفته -->
-            <div class="course-item">
-                <div class="course-info">
-                    <div class="course-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <span class="course-title">برنامه‌نویسی پیشرفته</span>
-                    <span class="course-badge"><i class="far fa-star"></i> 4042</span>
-                </div>
-                <div class="course-actions">
-                    <a href="https://ap.c-cs.ir" class="btn-syllabus" target="_blank">
-                        <i class="fas fa-book-open"></i> پیش‌برنامه
-                    </a>
-                    <a href="https://aphw.c-cs.ir" class="btn-assignment" target="_blank">
-                        <i class="fas fa-paper-plane"></i> ورود به سایت ارسال تمرین
-                    </a>
-                </div>
-            </div>
-
         </div>
 
-        <!-- فوتر با پیام شخصی -->
+        <!-- گروه ۲: نیم‌سال دوم ۱۴۰۵-۱۴۰۴ -->
+        <div class="semester-group">
+            <div class="semester-header">
+                <i class="fas fa-calendar-alt"></i>
+                <span>نیم‌سال دوم ۱۴۰۵-۱۴۰۴</span>
+                <span class="badge-code">💻</span>
+            </div>
+            <div class="courses-grid">
+                <!-- دوره برنامه‌نویسی پیشرفته -->
+                <div class="course-item">
+                    <div class="course-info">
+                        <div class="course-icon"><i class="fas fa-code"></i></div>
+                        <span class="course-title">برنامه‌نویسی پیشرفته</span>
+                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                    </div>
+                    <div class="course-actions">
+                        <a href="https://ap.c-cs.ir" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
+                        <a href="https://aphw.c-cs.ir" class="btn-assignment" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- گروه ۳: نیم‌سال اول ۱۴۰۴-۱۴۰۵ -->
+        <div class="semester-group">
+            <div class="semester-header">
+                <i class="fas fa-calendar-alt"></i>
+                <span>نیم‌سال اول ۱۴۰۴-۱۴۰۵</span>
+                <span class="badge-code">🗄️</span>
+            </div>
+            <div class="courses-grid">
+                <!-- دوره پایگاه داده -->
+                <div class="course-item">
+                    <div class="course-info">
+                        <div class="course-icon"><i class="fas fa-database"></i></div>
+                        <span class="course-title">پایگاه داده</span>
+                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                    </div>
+                    <div class="course-actions">
+                        <a href="https://4041db.c-cs.ir" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
+                        <a href="https://db4041.c-cs.ir" class="btn-assignment" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- گروه ۴: نیم‌سال دوم ۱۴۰۳-۱۴۰۴ -->
+        <div class="semester-group">
+            <div class="semester-header">
+                <i class="fas fa-calendar-alt"></i>
+                <span>نیم‌سال دوم ۱۴۰۳-۱۴۰۴</span>
+                <span class="badge-code">📊</span>
+            </div>
+            <div class="courses-grid">
+                <!-- دوره پایگاه داده (فقط پیش‌برنامه) -->
+                <div class="course-item">
+                    <div class="course-info">
+                        <div class="course-icon"><i class="fas fa-database"></i></div>
+                        <span class="course-title">پایگاه داده</span>
+                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                    </div>
+                    <div class="course-actions">
+                        <a href="https://db4032.miladai.ir" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
+                    </div>
+                </div>
+
+                <!-- درس جدید: یادگیری ماشین در مالی -->
+                <div class="course-item">
+                    <div class="course-info">
+                        <div class="course-icon"><i class="fas fa-chart-line"></i></div>
+                        <span class="course-title">یادگیری ماشین در مالی</span>
+                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده مدیریت و حسابداری</span>
+                        <span class="course-note"><i class="fas fa-info-circle"></i> در سامانه بهستان با عنوان «تجزیه و تحلیل تکنیکال» ارائه شده است</span>
+                    </div>
+                    <div class="course-actions">
+                        <a href="https://ta-sbu.github.io/" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- فوتر -->
         <div class="footer-note">
             <i class="fas fa-brain"></i>
             <span>دانشکده ریاضی - دانشگاه شهید بهشتی</span>
