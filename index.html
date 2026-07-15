@@ -1,629 +1,478 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دوره‌های میلاد وزان</title>
-    <!-- Font Awesome 6 (Free) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #2d3436;
+            --text-light: #636e72;
+            
+            /* رنگ‌های تخت و جذاب برای هر گروه */
+            --color-purple: #6c5ce7;
+            --bg-purple: #f3f0ff;
+            
+            --color-green: #00b894;
+            --bg-green: #eefbf8;
+            
+            --color-blue: #0984e3;
+            --bg-blue: #eff7fe;
+            
+            --color-orange: #e17055;
+            --bg-orange: #fff0ed;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            outline: none;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(145deg, #f0f4fc 0%, #d9e2ef 100%);
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 1.5rem;
-            margin: 0;
+            padding: 2rem 1rem;
+            line-height: 1.6;
         }
 
-        .card {
-            max-width: 960px;
+        .container {
+            max-width: 900px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 48px;
-            box-shadow: 0 30px 60px -20px rgba(0, 20, 40, 0.35),
-                        0 0 0 1px rgba(255, 255, 255, 0.7) inset;
-            padding: 2.5rem 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            transition: all 0.2s;
+            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* هدر اختصاصی */
+        /* ===== هدر پروفایل ===== */
         .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid rgba(43, 58, 103, 0.08);
-            padding-bottom: 1.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
         }
 
-        .avatar {
-            width: 72px;
-            height: 72px;
-            background: linear-gradient(145deg, #1d2b4b, #2b3a67);
-            border-radius: 30px;
+        .avatar-wrapper {
+            width: 90px;
+            height: 90px;
+            background: var(--text-main);
+            border-radius: 24px;
+            margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 2.4rem;
-            box-shadow: 0 14px 20px -10px rgba(27, 43, 80, 0.3);
-            flex-shrink: 0;
+            color: #fff;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: rotate(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .avatar-wrapper:hover {
+            transform: rotate(0deg) scale(1.05);
         }
 
         .owner-info h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #0b1a2f;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
+        }
+
+        .badges-row {
             display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-        }
-
-        .owner-info h1 i {
-            color: #fbbf24;
-            font-size: 1.8rem;
-        }
-
-        .owner-info .sub {
-            font-size: 1rem;
-            color: #2c405e;
-            background: rgba(0, 0, 0, 0.02);
-            padding: 0.25rem 1.2rem 0.25rem 0;
-            border-radius: 40px;
-            display: inline-block;
-            margin-top: 0.2rem;
-            font-weight: 400;
-        }
-
-        .owner-info .sub i {
-            margin-left: 0.5rem;
-            color: #3b5b8c;
-        }
-
-        .owner-info .university {
-            font-size: 0.85rem;
-            color: #3a5a7a;
-            background: rgba(43, 58, 103, 0.06);
-            padding: 0.15rem 1rem;
-            border-radius: 40px;
-            display: inline-block;
-            margin-top: 0.1rem;
-            font-weight: 400;
-        }
-
-        .owner-info .university i {
-            margin-left: 0.4rem;
-            color: #3b5b8c;
-        }
-
-        /* ===== دسته‌بندی جدید با هدرهای نیم‌سال ===== */
-        .semester-group {
-            margin-top: 1.8rem;
-        }
-
-        .semester-header {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            padding: 0.5rem 1.5rem 0.5rem 1.8rem;
-            border-radius: 60px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            width: fit-content;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-            transition: all 0.2s;
-        }
-        .semester-header:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .semester-header i {
-            font-size: 1.2rem;
-        }
-
-        .semester-header span {
-            font-size: 1.05rem;
-            letter-spacing: 0.3px;
-            font-weight: 600;
-        }
-
-        /* رنگ‌های خاص برای هر نیم‌سال */
-        .semester-group:nth-child(1) .semester-header {
-            background: linear-gradient(135deg, #fde68a, #fcd34d);
-            color: #78350f;
-            border-color: #fbbf24;
-        }
-        .semester-group:nth-child(2) .semester-header {
-            background: linear-gradient(135deg, #a7f3d0, #6ee7b7);
-            color: #064e3b;
-            border-color: #34d399;
-        }
-        .semester-group:nth-child(3) .semester-header {
-            background: linear-gradient(135deg, #bfdbfe, #93c5fd);
-            color: #1e3a8a;
-            border-color: #60a5fa;
-        }
-        .semester-group:nth-child(4) .semester-header {
-            background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
-            color: #831843;
-            border-color: #f472b6;
-        }
-
-        .semester-header .badge-code {
-            background: rgba(255,255,255,0.5);
-            padding: 0.1rem 0.9rem;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
-        }
-
-        /* لیست دوره‌ها */
-        .courses-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 0.2rem;
-            padding-right: 0.2rem;
-        }
-
-        .course-item {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 100px;
-            padding: 0.2rem 0.2rem 0.2rem 1.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 0.8rem 1.2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            transition: all 0.2s ease;
-        }
-
-        .course-item:hover {
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 14px 28px -12px rgba(0, 20, 40, 0.18);
-            border-color: rgba(255, 255, 255, 0.95);
-            transform: scale(1.01) translateY(-2px);
-        }
-
-        .course-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex: 1 1 200px;
-            flex-wrap: wrap;
-        }
-
-        .course-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(30, 58, 95, 0.07);
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
-            color: #1d3b5c;
-            transition: 0.2s;
-            flex-shrink: 0;
-        }
-
-        .course-item:hover .course-icon {
-            background: rgba(30, 58, 95, 0.15);
-            color: #0b1f36;
-        }
-
-        .course-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: #0e1f38;
-            letter-spacing: -0.2px;
-        }
-
-        .course-note {
-            font-size: 0.7rem;
-            color: #4a5f7a;
-            background: rgba(0,0,0,0.03);
-            padding: 0.2rem 0.8rem;
-            border-radius: 40px;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .course-faculty {
-            font-size: 0.7rem;
-            color: #4a5f7a;
-            background: rgba(43, 58, 103, 0.06);
-            padding: 0.15rem 0.8rem;
-            border-radius: 40px;
-            border: 1px solid rgba(43, 58, 103, 0.08);
-            white-space: nowrap;
-        }
-
-        /* دکمه‌ها با رنگ‌های متفاوت برای هر ترم */
-        .course-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
-        .btn-syllabus,
-        .btn-assignment {
-            border: none;
-            padding: 0.6rem 1.3rem;
-            border-radius: 60px;
-            font-weight: 600;
+        .badge {
             font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            background: #f1f2f6;
+            color: var(--text-light);
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            letter-spacing: 0.2px;
-            white-space: nowrap;
-            cursor: pointer;
         }
 
-        .btn-syllabus i,
-        .btn-assignment i {
-            font-size: 0.85rem;
-            transition: transform 0.2s;
+        .badge i {
+            font-size: 0.9rem;
+            opacity: 0.7;
         }
 
-        .btn-syllabus:hover,
-        .btn-assignment:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+        /* ===== ساختار کارت‌های نیم‌سال ===== */
+        .semester-card {
+            background: #fff;
+            border: 1px solid #f1f2f6;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-syllabus:hover i,
-        .btn-assignment:hover i {
-            transform: scale(1.1);
+        .semester-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+            border-color: transparent;
         }
 
-        .btn-syllabus:active,
-        .btn-assignment:active {
-            transform: scale(0.95);
+        /* نوار رنگی کنار کارت */
+        .semester-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 6px;
+            height: 100%;
+            transition: width 0.3s ease;
         }
 
-        /* ===== رنگ‌های دکمه‌ها بر اساس ترم ===== */
-        /* ترم ۱ (نیم‌سال اول ۱۴۰۶-۱۴۰۵) - طلایی/نارنجی */
-        .semester-group:nth-child(1) .btn-syllabus {
-            background: linear-gradient(135deg, #d97706, #b45309);
-            color: white;
-        }
-        .semester-group:nth-child(1) .btn-assignment {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-        }
-        .semester-group:nth-child(1) .btn-syllabus i,
-        .semester-group:nth-child(1) .btn-assignment i {
-            color: white;
+        .semester-card:hover::before {
+            width: 10px;
         }
 
-        /* ترم ۲ (نیم‌سال دوم ۱۴۰۵-۱۴۰۴) - سبز */
-        .semester-group:nth-child(2) .btn-syllabus {
-            background: linear-gradient(135deg, #059669, #047857);
-            color: white;
-        }
-        .semester-group:nth-child(2) .btn-assignment {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-        }
-        .semester-group:nth-child(2) .btn-syllabus i,
-        .semester-group:nth-child(2) .btn-assignment i {
-            color: white;
-        }
+        /* رنگ‌بندی اختصاصی */
+        .group-purple::before { background: var(--color-purple); }
+        .group-green::before { background: var(--color-green); }
+        .group-blue::before { background: var(--color-blue); }
+        .group-orange::before { background: var(--color-orange); }
 
-        /* ترم ۳ (نیم‌سال اول ۱۴۰۴-۱۴۰۵) - آبی */
-        .semester-group:nth-child(3) .btn-syllabus {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-        }
-        .semester-group:nth-child(3) .btn-assignment {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            color: white;
-        }
-        .semester-group:nth-child(3) .btn-syllabus i,
-        .semester-group:nth-child(3) .btn-assignment i {
-            color: white;
-        }
-
-        /* ترم ۴ (نیم‌سال دوم ۱۴۰۳-۱۴۰۴) - زرد با متن تیره */
-        .semester-group:nth-child(4) .btn-syllabus {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
-            color: #78350f !important;
-        }
-        .semester-group:nth-child(4) .btn-assignment {
-            background: linear-gradient(135deg, #fcd34d, #fbbf24) !important;
-            color: #78350f !important;
-        }
-        .semester-group:nth-child(4) .btn-syllabus i,
-        .semester-group:nth-child(4) .btn-assignment i {
-            color: #78350f !important;
-        }
-        /* حالت hover برای ترم ۴ */
-        .semester-group:nth-child(4) .btn-syllabus:hover,
-        .semester-group:nth-child(4) .btn-assignment:hover {
-            background: linear-gradient(135deg, #fcd34d, #fbbf24) !important;
-        }
-
-        .footer-note {
-            margin-top: 2.8rem;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #3a5075;
-            opacity: 0.8;
-            border-top: 1px solid rgba(0, 0, 0, 0.03);
-            padding-top: 2rem;
+        .semester-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             display: flex;
-            justify-content: center;
             align-items: center;
             gap: 0.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #dfe6e9;
+        }
+
+        .semester-title i {
+            font-size: 1.2rem;
+        }
+
+        .group-purple .semester-title { color: var(--color-purple); }
+        .group-green .semester-title { color: var(--color-green); }
+        .group-blue .semester-title { color: var(--color-blue); }
+        .group-orange .semester-title { color: var(--color-orange); }
+
+        /* ===== لیست دوره‌ها ===== */
+        .course-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .course-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 16px;
+            transition: background 0.2s ease;
+        }
+
+        .course-item:hover {
+            background: #fafafa;
+        }
+
+        /* آیکون دوره */
+        .course-icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .group-purple .course-icon-box { background: var(--bg-purple); color: var(--color-purple); }
+        .group-green .course-icon-box { background: var(--bg-green); color: var(--color-green); }
+        .group-blue .course-icon-box { background: var(--bg-blue); color: var(--color-blue); }
+        .group-orange .course-icon-box { background: var(--bg-orange); color: var(--color-orange); }
+
+        /* اطلاعات دوره */
+        .course-details h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
             flex-wrap: wrap;
         }
 
-        .footer-note i {
-            color: #8aa3c9;
+        .course-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
-        @media (max-width: 700px) {
+        .note-tag {
+            font-size: 0.75rem;
+            background: #ffeaa7;
+            color: #d35400;
+            padding: 0.1rem 0.6rem;
+            border-radius: 4px;
+            margin-top: 0.4rem;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        /* ===== دکمه‌ها ===== */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            min-width: 140px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 1px solid transparent;
+        }
+
+        /* استایل دکمه‌ها بر اساس گروه */
+        
+        /* بنفش */
+        .group-purple .btn-primary { background: var(--color-purple); color: #fff; }
+        .group-purple .btn-secondary { background: var(--bg-purple); color: var(--color-purple); }
+        .group-purple .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* سبز */
+        .group-green .btn-primary { background: var(--color-green); color: #fff; }
+        .group-green .btn-secondary { background: var(--bg-green); color: var(--color-green); }
+        .group-green .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* آبی */
+        .group-blue .btn-primary { background: var(--color-blue); color: #fff; }
+        .group-blue .btn-secondary { background: var(--bg-blue); color: var(--color-blue); }
+        .group-blue .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* نارنجی */
+        .group-orange .btn-primary { background: var(--color-orange); color: #fff; }
+        .group-orange .btn-secondary { background: var(--bg-orange); color: var(--color-orange); }
+        .group-orange .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+
+        /* فوتر */
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #f1f2f6;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* انیمیشن‌ها */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
             .course-item {
-                border-radius: 30px;
-                padding: 0.9rem 1rem;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.8rem;
-                background: rgba(255, 255, 255, 0.6);
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                text-align: center;
             }
-            .course-info {
-                flex: 1 1 auto;
-                gap: 0.7rem;
-                flex-wrap: wrap;
+            
+            .course-icon-box {
+                margin: 0 auto;
             }
-            .course-actions {
-                justify-content: stretch;
-                gap: 0.6rem;
-            }
-            .btn-syllabus,
-            .btn-assignment {
-                flex: 1;
-                justify-content: center;
-                padding: 0.7rem 0.8rem;
-                font-size: 0.8rem;
-            }
-            .course-icon {
-                width: 42px;
-                height: 42px;
-                font-size: 1.1rem;
-            }
-            .card {
-                padding: 1.6rem 1.2rem;
-                border-radius: 32px;
-            }
-            .profile-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.6rem;
-            }
-            .avatar {
-                width: 60px;
-                height: 60px;
-                font-size: 1.8rem;
-            }
-            .owner-info h1 {
-                font-size: 1.7rem;
-            }
-            .semester-header {
-                font-size: 0.9rem;
-                padding: 0.4rem 1rem 0.4rem 1.2rem;
-            }
-            .semester-header span {
-                font-size: 0.9rem;
-            }
-            .course-note {
-                font-size: 0.65rem;
-                white-space: normal;
-            }
-            .course-faculty {
-                font-size: 0.65rem;
-                white-space: normal;
-            }
-        }
 
-        @media (max-width: 400px) {
-            .course-title {
-                font-size: 0.95rem;
+            .course-meta {
+                justify-content: center;
             }
-            .btn-syllabus,
-            .btn-assignment {
-                font-size: 0.7rem;
-                padding: 0.6rem 0.6rem;
+
+            .action-buttons {
+                flex-direction: row;
+                width: 100%;
             }
-            .owner-info h1 {
-                font-size: 1.4rem;
-            }
-            .semester-header span {
-                font-size: 0.8rem;
+
+            .btn {
+                flex: 1;
             }
         }
     </style>
 </head>
 <body>
-    <div class="card">
+
+    <div class="container">
 
         <!-- هدر -->
-        <div class="profile-header">
-            <div class="avatar">
-                <i class="fas fa-user-graduate"></i>
+        <header class="profile-header">
+            <div class="avatar-wrapper">
+                <i class="fas fa-user-astronaut"></i>
             </div>
             <div class="owner-info">
-                <h1>
-                    میلاد وزان
-                    <i class="fas fa-graduation-cap"></i>
-                </h1>
-                <div class="sub">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    دسته‌بندی دروس بر اساس نیم‌سال
-                </div>
-                <div class="university">
-                    <i class="fas fa-university"></i>
-                    دانشگاه شهید بهشتی
+                <h1>میلاد وزان</h1>
+                <div class="badges-row">
+                    <span class="badge"><i class="fas fa-university"></i> دانشگاه شهید بهشتی</span>
+                    <span class="badge"><i class="fas fa-chalkboard-teacher"></i> مدرس دروس تخصصی</span>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <!-- ========== دسته‌بندی بر اساس نیم‌سال ========== -->
-
-        <!-- گروه ۱: نیم‌سال اول ۱۴۰۶-۱۴۰۵ -->
-        <div class="semester-group">
-            <div class="semester-header">
-                <i class="fas fa-calendar-alt"></i>
-                <span>نیم‌سال اول ۱۴۰۶-۱۴۰۵</span>
-                <span class="badge-code">📚</span>
+        <!-- گروه ۱: بنفش -->
+        <section class="semester-card group-purple">
+            <div class="semester-title">
+                <i class="fas fa-layer-group"></i>
+                نیم‌سال اول ۱۴۰۶-۱۴۰۵
             </div>
-            <div class="courses-grid">
-                <!-- دوره LLM -->
+            <div class="course-list">
+                <!-- آیتم ۱ -->
                 <div class="course-item">
-                    <div class="course-info">
-                        <div class="course-icon"><i class="fas fa-robot"></i></div>
-                        <span class="course-title">مهندسی مدل‌های زبانی بزرگ</span>
-                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده ریاضی</span>
-                        <span class="course-note"><i class="fas fa-info-circle"></i> در سامانه بهستان با عنوان «سیستم‌های خبره» ارائه شده است</span>
+                    <div class="course-icon-box"><i class="fas fa-robot"></i></div>
+                    <div class="course-details">
+                        <h3>مهندسی مدل‌های زبانی بزرگ</h3>
+                        <div class="course-meta">
+                            <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                        </div>
+                        <span class="note-tag">عنوان سامانه: سیستم‌های خبره</span>
                     </div>
-                    <div class="course-actions">
-                        <a href="https://llm.c-cs.ir" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
-                        <a href="https://llmhw.c-cs.ir" class="btn-assignment" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
+                    <div class="action-buttons">
+                        <a href="https://llm.c-cs.ir" class="btn btn-primary" target="_blank"><i class="fas fa-book-open"></i> سیلابس</a>
+                        <a href="https://llmhw.c-cs.ir" class="btn btn-secondary" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
                     </div>
                 </div>
-                <!-- دوره پایگاه داده -->
+                <!-- آیتم ۲ -->
                 <div class="course-item">
-                    <div class="course-info">
-                        <div class="course-icon"><i class="fas fa-database"></i></div>
-                        <span class="course-title">پایگاه داده</span>
-                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                    <div class="course-icon-box"><i class="fas fa-database"></i></div>
+                    <div class="course-details">
+                        <h3>پایگاه داده</h3>
+                        <div class="course-meta">
+                            <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                        </div>
                     </div>
-                    <div class="course-actions">
-                        <a href="https://db.c-cs.ir" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
-                        <a href="https://dbhw.c-cs.ir" class="btn-assignment" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
+                    <div class="action-buttons">
+                        <a href="https://db.c-cs.ir" class="btn btn-primary" target="_blank"><i class="fas fa-book-open"></i> سیلابس</a>
+                        <a href="https://dbhw.c-cs.ir" class="btn btn-secondary" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- گروه ۲: نیم‌سال دوم ۱۴۰۵-۱۴۰۴ -->
-        <div class="semester-group">
-            <div class="semester-header">
-                <i class="fas fa-calendar-alt"></i>
-                <span>نیم‌سال دوم ۱۴۰۵-۱۴۰۴</span>
-                <span class="badge-code">💻</span>
+        <!-- گروه ۲: سبز -->
+        <section class="semester-card group-green">
+            <div class="semester-title">
+                <i class="fas fa-laptop-code"></i>
+                نیم‌سال دوم ۱۴۰۵-۱۴۰۴
             </div>
-            <div class="courses-grid">
-                <!-- دوره برنامه‌نویسی پیشرفته -->
+            <div class="course-list">
                 <div class="course-item">
-                    <div class="course-info">
-                        <div class="course-icon"><i class="fas fa-code"></i></div>
-                        <span class="course-title">برنامه‌نویسی پیشرفته</span>
-                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                    <div class="course-icon-box"><i class="fas fa-code"></i></div>
+                    <div class="course-details">
+                        <h3>برنامه‌نویسی پیشرفته</h3>
+                        <div class="course-meta">
+                            <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                        </div>
                     </div>
-                    <div class="course-actions">
-                        <a href="https://ap.c-cs.ir" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
-                        <a href="https://aphw.c-cs.ir" class="btn-assignment" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
+                    <div class="action-buttons">
+                        <a href="https://ap.c-cs.ir" class="btn btn-primary" target="_blank"><i class="fas fa-book-open"></i> سیلابس</a>
+                        <a href="https://aphw.c-cs.ir" class="btn btn-secondary" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- گروه ۳: نیم‌سال اول ۱۴۰۴-۱۴۰۵ -->
-        <div class="semester-group">
-            <div class="semester-header">
-                <i class="fas fa-calendar-alt"></i>
-                <span>نیم‌سال اول ۱۴۰۴-۱۴۰۵</span>
-                <span class="badge-code">🗄️</span>
+        <!-- گروه ۳: آبی -->
+        <section class="semester-card group-blue">
+            <div class="semester-title">
+                <i class="fas fa-server"></i>
+                نیم‌سال اول ۱۴۰۴-۱۴۰۵
             </div>
-            <div class="courses-grid">
-                <!-- دوره پایگاه داده -->
+            <div class="course-list">
                 <div class="course-item">
-                    <div class="course-info">
-                        <div class="course-icon"><i class="fas fa-database"></i></div>
-                        <span class="course-title">پایگاه داده</span>
-                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                    <div class="course-icon-box"><i class="fas fa-database"></i></div>
+                    <div class="course-details">
+                        <h3>پایگاه داده</h3>
+                        <div class="course-meta">
+                            <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                        </div>
                     </div>
-                    <div class="course-actions">
-                        <a href="https://4041db.c-cs.ir" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
-                        <a href="https://db4041.c-cs.ir" class="btn-assignment" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
+                    <div class="action-buttons">
+                        <a href="https://4041db.c-cs.ir" class="btn btn-primary" target="_blank"><i class="fas fa-book-open"></i> سیلابس</a>
+                        <a href="https://db4041.c-cs.ir" class="btn btn-secondary" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- گروه ۴: نیم‌سال دوم ۱۴۰۳-۱۴۰۴ -->
-        <div class="semester-group">
-            <div class="semester-header">
-                <i class="fas fa-calendar-alt"></i>
-                <span>نیم‌سال دوم ۱۴۰۳-۱۴۰۴</span>
-                <span class="badge-code">📊</span>
+        <!-- گروه ۴: نارنجی -->
+        <section class="semester-card group-orange">
+            <div class="semester-title">
+                <i class="fas fa-chart-pie"></i>
+                نیم‌سال دوم ۱۴۰۳-۱۴۰۴
             </div>
-            <div class="courses-grid">
-                <!-- دوره پایگاه داده (فقط پیش‌برنامه) -->
+            <div class="course-list">
                 <div class="course-item">
-                    <div class="course-info">
-                        <div class="course-icon"><i class="fas fa-database"></i></div>
-                        <span class="course-title">پایگاه داده</span>
-                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                    <div class="course-icon-box"><i class="fas fa-database"></i></div>
+                    <div class="course-details">
+                        <h3>پایگاه داده</h3>
+                        <div class="course-meta">
+                            <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                        </div>
                     </div>
-                    <div class="course-actions">
-                        <a href="https://db4032.miladai.ir" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
+                    <div class="action-buttons">
+                        <a href="https://db4032.miladai.ir" class="btn btn-primary" target="_blank"><i class="fas fa-book-open"></i> سیلابس</a>
                     </div>
                 </div>
-
-                <!-- درس جدید: یادگیری ماشین در مالی -->
                 <div class="course-item">
-                    <div class="course-info">
-                        <div class="course-icon"><i class="fas fa-chart-line"></i></div>
-                        <span class="course-title">یادگیری ماشین در مالی</span>
-                        <span class="course-faculty"><i class="fas fa-building"></i> دانشکده مدیریت و حسابداری</span>
-                        <span class="course-note"><i class="fas fa-info-circle"></i> در سامانه بهستان با عنوان «تجزیه و تحلیل تکنیکال» ارائه شده است</span>
+                    <div class="course-icon-box"><i class="fas fa-chart-line"></i></div>
+                    <div class="course-details">
+                        <h3>یادگیری ماشین در مالی</h3>
+                        <div class="course-meta">
+                            <span><i class="fas fa-building"></i> دانشکده مدیریت</span>
+                        </div>
+                        <span class="note-tag">عنوان سامانه: تجزیه و تحلیل تکنیکال</span>
                     </div>
-                    <div class="course-actions">
-                        <a href="https://ta-sbu.github.io/" class="btn-syllabus" target="_blank"><i class="fas fa-book-open"></i> پیش‌برنامه</a>
+                    <div class="action-buttons">
+                        <a href="https://ta-sbu.github.io/" class="btn btn-primary" target="_blank"><i class="fas fa-book-open"></i> سیلابس</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- فوتر -->
-        <div class="footer-note">
-            <i class="fas fa-brain"></i>
-            <span>دانشکده ریاضی - دانشگاه شهید بهشتی</span>
-            <i class="fas fa-arrow-left"></i>
-        </div>
+        <footer class="footer">
+            <p>طراحی شده با ❤️ برای دانشجویان عزیز</p>
+        </footer>
 
     </div>
+
 </body>
 </html>
