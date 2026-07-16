@@ -13,7 +13,6 @@
             --text-main: #2d3436;
             --text-light: #636e72;
             
-            /* رنگ‌های تخت و جذاب برای هر گروه */
             --color-purple: #6c5ce7;
             --bg-purple: #f3f0ff;
             
@@ -51,7 +50,6 @@
             animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* ===== هدر پروفایل ===== */
         .profile-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -110,7 +108,6 @@
             opacity: 0.7;
         }
 
-        /* ===== ساختار کارت‌های نیم‌سال ===== */
         .semester-card {
             background: #fff;
             border: 1px solid #f1f2f6;
@@ -129,7 +126,6 @@
             border-color: transparent;
         }
 
-        /* نوار رنگی کنار کارت */
         .semester-card::before {
             content: '';
             position: absolute;
@@ -144,7 +140,6 @@
             width: 10px;
         }
 
-        /* رنگ‌بندی اختصاصی */
         .group-purple::before { background: var(--color-purple); }
         .group-green::before { background: var(--color-green); }
         .group-blue::before { background: var(--color-blue); }
@@ -170,7 +165,6 @@
         .group-blue .semester-title { color: var(--color-blue); }
         .group-orange .semester-title { color: var(--color-orange); }
 
-        /* ===== لیست دوره‌ها ===== */
         .course-list {
             display: flex;
             flex-direction: column;
@@ -191,7 +185,6 @@
             background: #fafafa;
         }
 
-        /* آیکون دوره */
         .course-icon-box {
             width: 50px;
             height: 50px;
@@ -208,7 +201,6 @@
         .group-blue .course-icon-box { background: var(--bg-blue); color: var(--color-blue); }
         .group-orange .course-icon-box { background: var(--bg-orange); color: var(--color-orange); }
 
-        /* اطلاعات دوره */
         .course-details h3 {
             font-size: 1rem;
             font-weight: 700;
@@ -230,6 +222,35 @@
             gap: 0.4rem;
         }
 
+        .course-tag {
+            background: #dfe6e9;
+            color: #2d3436;
+            padding: 0.1rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .course-tag.cs {
+            background: #a29bfe;
+            color: #fff;
+        }
+
+        .course-tag.math {
+            background: #fd79a8;
+            color: #fff;
+        }
+
+        .course-tag.stat {
+            background: #fdcb6e;
+            color: #2d3436;
+        }
+
+        .course-tag.finance {
+            background: #55efc4;
+            color: #2d3436;
+        }
+
         .note-tag {
             font-size: 0.75rem;
             background: #ffeaa7;
@@ -241,7 +262,6 @@
             font-weight: 600;
         }
 
-        /* ===== دکمه‌ها ===== */
         .action-buttons {
             display: flex;
             flex-direction: column;
@@ -264,30 +284,22 @@
             border: 1px solid transparent;
         }
 
-        /* استایل دکمه‌ها بر اساس گروه */
-        
-        /* بنفش */
         .group-purple .btn-primary { background: var(--color-purple); color: #fff; }
         .group-purple .btn-secondary { background: var(--bg-purple); color: var(--color-purple); }
         .group-purple .btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* سبز */
         .group-green .btn-primary { background: var(--color-green); color: #fff; }
         .group-green .btn-secondary { background: var(--bg-green); color: var(--color-green); }
         .group-green .btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* آبی */
         .group-blue .btn-primary { background: var(--color-blue); color: #fff; }
         .group-blue .btn-secondary { background: var(--bg-blue); color: var(--color-blue); }
         .group-blue .btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* نارنجی */
         .group-orange .btn-primary { background: var(--color-orange); color: #fff; }
         .group-orange .btn-secondary { background: var(--bg-orange); color: var(--color-orange); }
         .group-orange .btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-
-        /* فوتر */
         .footer {
             text-align: center;
             margin-top: 4rem;
@@ -297,13 +309,11 @@
             font-size: 0.9rem;
         }
 
-        /* انیمیشن‌ها */
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ریسپانسیو */
         @media (max-width: 768px) {
             .course-item {
                 grid-template-columns: 1fr;
@@ -334,7 +344,7 @@
 
     <div class="container">
 
-        <!-- هدر -->
+        <!-- Header -->
         <header class="profile-header">
             <div class="avatar-wrapper">
                 <i class="fas fa-user-astronaut"></i>
@@ -343,25 +353,28 @@
                 <h1>میلاد وزان</h1>
                 <div class="badges-row">
                     <span class="badge"><i class="fas fa-university"></i> دانشگاه شهید بهشتی</span>
-            
                 </div>
             </div>
         </header>
 
-        <!-- گروه ۱: بنفش -->
+        <!-- ====== نیم‌سال اول ۱۴۰۶-۱۴۰۵ ====== -->
         <section class="semester-card group-purple">
             <div class="semester-title">
                 <i class="fas fa-layer-group"></i>
                 نیم‌سال اول ۱۴۰۶-۱۴۰۵
             </div>
             <div class="course-list">
-                <!-- آیتم ۱ -->
+                
+                <!-- درس: مهندسی مدل‌های زبانی بزرگ -->
                 <div class="course-item">
                     <div class="course-icon-box"><i class="fas fa-robot"></i></div>
                     <div class="course-details">
                         <h3>مهندسی مدل‌های زبانی بزرگ</h3>
                         <div class="course-meta">
                             <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                            <span><i class="fas fa-tags"></i> 
+                                <span class="course-tag cs">علوم کامپیوتر</span>
+                            </span>
                         </div>
                         <span class="note-tag">عنوان در سامانه بهستان: سیستم‌های خبره</span>
                     </div>
@@ -370,13 +383,17 @@
                         <a href="https://llmhw.c-cs.ir" class="btn btn-secondary" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
                     </div>
                 </div>
-                <!-- آیتم ۲ -->
+
+                <!-- درس: پایگاه داده -->
                 <div class="course-item">
                     <div class="course-icon-box"><i class="fas fa-database"></i></div>
                     <div class="course-details">
                         <h3>پایگاه داده</h3>
                         <div class="course-meta">
                             <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                            <span><i class="fas fa-tags"></i> 
+                                <span class="course-tag cs">علوم کامپیوتر</span>
+                            </span>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -387,19 +404,25 @@
             </div>
         </section>
 
-        <!-- گروه ۲: سبز -->
+        <!-- ====== نیم‌سال دوم ۱۴۰۵-۱۴۰۴ ====== -->
         <section class="semester-card group-green">
             <div class="semester-title">
                 <i class="fas fa-laptop-code"></i>
                 نیم‌سال دوم ۱۴۰۵-۱۴۰۴
             </div>
             <div class="course-list">
+                
+                <!-- درس: برنامه‌نویسی پیشرفته -->
                 <div class="course-item">
                     <div class="course-icon-box"><i class="fas fa-code"></i></div>
                     <div class="course-details">
                         <h3>برنامه‌نویسی پیشرفته</h3>
                         <div class="course-meta">
                             <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                            <span><i class="fas fa-tags"></i> 
+                                <span class="course-tag math">ریاضی</span>
+                                <span class="course-tag stat">آمار</span>
+                            </span>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -410,19 +433,25 @@
             </div>
         </section>
 
-        <!-- گروه ۳: آبی -->
+        <!-- ====== نیم‌سال اول ۱۴۰۴-۱۴۰۵ ====== -->
         <section class="semester-card group-blue">
             <div class="semester-title">
                 <i class="fas fa-server"></i>
                 نیم‌سال اول ۱۴۰۴-۱۴۰۵
             </div>
             <div class="course-list">
+                
+                <!-- درس: پایگاه داده -->
                 <div class="course-item">
                     <div class="course-icon-box"><i class="fas fa-database"></i></div>
                     <div class="course-details">
                         <h3>پایگاه داده</h3>
                         <div class="course-meta">
                             <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                            <span><i class="fas fa-tags"></i> 
+                                <span class="course-tag stat">آمار</span>
+                                <span class="course-tag cs">علوم کامپیوتر</span>
+                            </span>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -433,31 +462,41 @@
             </div>
         </section>
 
-        <!-- گروه ۴: نارنجی -->
+        <!-- ====== نیم‌سال دوم ۱۴۰۳-۱۴۰۴ ====== -->
         <section class="semester-card group-orange">
             <div class="semester-title">
                 <i class="fas fa-chart-pie"></i>
                 نیم‌سال دوم ۱۴۰۳-۱۴۰۴
             </div>
             <div class="course-list">
+                
+                <!-- درس: پایگاه داده -->
                 <div class="course-item">
                     <div class="course-icon-box"><i class="fas fa-database"></i></div>
                     <div class="course-details">
                         <h3>پایگاه داده</h3>
                         <div class="course-meta">
                             <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                            <span><i class="fas fa-tags"></i> 
+                                <span class="course-tag cs">علوم کامپیوتر</span>
+                            </span>
                         </div>
                     </div>
                     <div class="action-buttons">
                         <a href="https://db4032.miladai.ir" class="btn btn-primary" target="_blank"><i class="fas fa-book-open"></i> سیلابس</a>
                     </div>
                 </div>
+
+                <!-- درس: یادگیری ماشین در مالی -->
                 <div class="course-item">
                     <div class="course-icon-box"><i class="fas fa-chart-line"></i></div>
                     <div class="course-details">
                         <h3>یادگیری ماشین در مالی</h3>
                         <div class="course-meta">
                             <span><i class="fas fa-building"></i> دانشکده مدیریت</span>
+                            <span><i class="fas fa-tags"></i> 
+                                <span class="course-tag finance">مدیریت مالی</span>
+                            </span>
                         </div>
                         <span class="note-tag">عنوان در سامانه بهستان: تجزیه و تحلیل تکنیکال</span>
                     </div>
