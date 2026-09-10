@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دوره‌های میلاد وزان</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+
+        :root {
+            --bg: #000000;
+            --surface: #050505;
+            --surface-2: #0a0a0a;
+            --surface-3: #101010;
+            --surface-4: #161616;
+            --border: #1a1a1a;
+            --border-hover: #2a2a2a;
+
+            --text-main: #ffffff;
+            --text-soft: #d4d4d4;
+            --text-dim: #8a8a8a;
+
+            --purple: #8b5cf6;
+            --purple-soft: #a78bfa;
+            --green: #4ade80;
+            --blue: #60a5fa;
+            --orange: #fb923c;
+            --pink: #f472b6;
+            --yellow: #facc15;
+
+            --radius: 18px;
+            --radius-sm: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 2.5rem 1rem 5rem;
+            line-height: 1.7;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -400px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            animation: fadeUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== نوار بالا ===== */
+        .status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 1.1rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+            font-size: 0.78rem;
+            color: var(--text-soft);
+            font-weight: 500;
+            animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+            animation-delay: 0.05s;
+        }
+
+        .status-left,
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .status-bar i { font-size: 0.72rem; opacity: 0.85; }
+
+        /* ===== هدر ===== */
+        .profile-header {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem 1.6rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+            animation-delay: 0.1s;
+        }
+
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: var(--purple);
+            opacity: 0.7;
+            box-shadow: 0 0 24px var(--purple);
+        }
+
+        .avatar-wrapper {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 1.4rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--purple-soft);
+            font-size: 2.4rem;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+        }
+
+        .avatar-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: var(--green);
+            border: 2px solid var(--surface);
+            box-shadow: 0 0 12px var(--green);
+        }
+
+        .avatar-wrapper:hover {
+            transform: scale(1.05);
+            border-color: var(--purple);
+            box-shadow: 0 0 44px -6px rgba(139, 92, 246, 0.8);
+        }
+
+        .owner-info h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 0.4rem;
+            color: #ffffff;
+        }
+
+        .owner-info h1 .accent {
+            color: var(--purple-soft);
+            text-shadow: 0 0 24px rgba(139, 92, 246, 0.5);
+        }
+
+        .subtitle {
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1.3rem;
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: center;
+            gap: 0.55rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .header-btn {
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.55rem 1.1rem;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text-soft);
+            cursor: pointer;
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--border-hover);
+            color: #ffffff;
+        }
+
+        .header-btn.primary {
+            background: var(--purple);
+            color: #ffffff;
+            border-color: var(--purple);
+        }
+
+        .header-btn.primary:hover {
+            box-shadow: 0 8px 28px -6px var(--purple);
+            background: #7c3aed;
+        }
+
+        .header-btn i { font-size: 0.85rem; }
+
+        .badges-row {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .badge {
+            font-size: 0.76rem;
+            font-weight: 600;
+            padding: 0.4rem 0.9rem;
+            border-radius: 30px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-soft);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            border-color: var(--border-hover);
+            color: #ffffff;
+        }
+
+        .badge i { color: var(--purple-soft); font-size: 0.78rem; }
+
+        /* ===== عنوان بخش ===== */
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-soft);
+            padding-right: 0.3rem;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            border-radius: 2px;
+            background: var(--purple);
+            box-shadow: 0 0 12px var(--purple);
+        }
+
+        /* ===== چیدمان افقی کارت‌ها ===== */
+        .cards-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+            perspective: 1800px;
+        }
+
+        /* ===== کارت سه‌بعدی ===== */
+        .flip-card {
+            position: relative;
+            width: 100%;
+            height: 360px;
+            perspective: 1400px;
+            cursor: pointer;
+            animation: cardIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+        }
+
+        .flip-card:nth-child(1) { animation-delay: 0.1s; }
+        .flip-card:nth-child(2) { animation-delay: 0.2s; }
+        .flip-card:nth-child(3) { animation-delay: 0.3s; }
+        .flip-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(40px) rotate(-8deg) scale(0.92); }
+            to { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+        }
+
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-face {
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            box-shadow: 0 20px 50px -25px rgba(0, 0, 0, 1);
+            transition: border-color 0.3s ease, box-shadow 0.4s ease, transform 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flip-face::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            transition: height 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .flip-card.purple .flip-face::before { background: var(--purple); }
+        .flip-card.green  .flip-face::before { background: var(--green); }
+        .flip-card.blue   .flip-face::before { background: var(--blue); }
+        .flip-card.orange .flip-face::before { background: var(--orange); }
+
+        .flip-card:hover .flip-face::before { height: 4px; }
+
+        .flip-card.purple:hover .flip-face { border-color: rgba(139, 92, 246, 0.5); box-shadow: 0 30px 60px -25px rgba(139, 92, 246, 0.6); }
+        .flip-card.green:hover  .flip-face { border-color: rgba(74, 222, 128, 0.5); box-shadow: 0 30px 60px -25px rgba(74, 222, 128, 0.5); }
+        .flip-card.blue:hover   .flip-face { border-color: rgba(96, 165, 250, 0.5); box-shadow: 0 30px 60px -25px rgba(96, 165, 250, 0.5); }
+        .flip-card.orange:hover .flip-face { border-color: rgba(251, 146, 60, 0.5); box-shadow: 0 30px 60px -25px rgba(251, 146, 60, 0.5); }
+
+        .flip-card:hover:not(.flipped) .flip-inner {
+            transform: translateY(-8px);
+        }
+
+        /* ===== روی کارت ===== */
+        .face-front {
+            padding: 1.4rem;
+            justify-content: space-between;
+        }
+
+        .front-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .front-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            background: var(--surface-3);
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .flip-card:hover .front-icon {
+            transform: scale(1.1) rotate(-8deg);
+            border-color: currentColor;
+        }
+
+        .flip-card.purple .front-icon { color: var(--purple-soft); }
+        .flip-card.green .front-icon  { color: var(--green); }
+        .flip-card.blue .front-icon   { color: var(--blue); }
+        .flip-card.orange .front-icon { color: var(--orange); }
+
+        .front-badge {
+            font-size: 0.62rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            background: var(--surface-3);
+            border: 1px solid var(--border);
+            color: var(--text-soft);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            white-space: nowrap;
+        }
+
+        .front-badge.live {
+            color: var(--green);
+            border-color: rgba(74, 222, 128, 0.4);
+            background: rgba(74, 222, 128, 0.08);
+            box-shadow: 0 0 10px -2px rgba(74, 222, 128, 0.6);
+        }
+
+        .front-badge.live::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 6px var(--green);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .front-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.5rem;
+            text-align: center;
+        }
+
+        .front-title {
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.4px;
+            line-height: 1.4;
+        }
+
+        .front-sub {
+            font-size: 0.74rem;
+            color: var(--text-dim);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+        }
+
+        .front-sub i { font-size: 0.68rem; }
+
+        .front-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .front-count {
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: var(--text-soft);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .front-count i { font-size: 0.72rem; opacity: 0.7; }
+
+        .front-hint {
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--text-dim);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .flip-card.purple:hover .front-hint { color: var(--purple-soft); }
+        .flip-card.green:hover  .front-hint { color: var(--green); }
+        .flip-card.blue:hover   .front-hint { color: var(--blue); }
+        .flip-card.orange:hover .front-hint { color: var(--orange); }
+
+        /* ===== پشت کارت ===== */
+        .face-back {
+            transform: rotateY(180deg);
+            padding: 1.2rem;
+        }
+
+        .back-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.7rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px solid var(--border);
+            gap: 0.5rem;
+        }
+
+        .back-title {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.2px;
+        }
+
+        .back-close {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface-3);
+            border: 1px solid var(--border);
+            color: var(--text-soft);
+            font-size: 0.62rem;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .back-close:hover {
+            background: #ef4444;
+            color: #fff;
+            border-color: #ef4444;
+            transform: rotate(90deg);
+        }
+
+        .back-courses {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            overflow-y: auto;
+            padding-left: 0.2rem;
+        }
+
+        .back-courses::-webkit-scrollbar { width: 4px; }
+        .back-courses::-webkit-scrollbar-track { background: transparent; }
+        .back-courses::-webkit-scrollbar-thumb {
+            background: var(--border-hover);
+            border-radius: 10px;
+        }
+
+        .back-course {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.55rem 0.65rem;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .back-course:hover {
+            background: var(--surface-3);
+            border-color: var(--border-hover);
+            transform: translateX(-3px);
+        }
+
+        .back-course-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.78rem;
+            background: var(--surface-3);
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .flip-card.purple .back-course-icon { color: var(--purple-soft); }
+        .flip-card.green .back-course-icon  { color: var(--green); }
+        .flip-card.blue .back-course-icon   { color: var(--blue); }
+        .flip-card.orange .back-course-icon { color: var(--orange); }
+
+        .back-course-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .back-course-name {
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .back-course-tag {
+            font-size: 0.58rem;
+            font-weight: 600;
+            color: var(--text-dim);
+        }
+
+        .back-course-arrow {
+            font-size: 0.62rem;
+            color: var(--text-dim);
+            transition: color 0.25s ease;
+        }
+
+        .back-course:hover .back-course-arrow { color: #ffffff; }
+
+        /* ===== فوتر ===== */
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-soft);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .footer p {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer .heart {
+            color: var(--pink);
+            animation: beat 1.4s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.25); }
+            50% { transform: scale(1); }
+        }
+
+        /* ===== دکمه شناور بالا ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            font-size: 0.9rem;
+        }
+
+        .back-to-top.show { opacity: 1; pointer-events: auto; }
+
+        .back-to-top:hover {
+            background: var(--purple);
+            color: #ffffff;
+            border-color: var(--purple);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px -6px var(--purple);
+        }
+
+        /* ===== واکنش‌گرا ===== */
+        @media (max-width: 1100px) {
+            .cards-row { gap: 1rem; }
+            .flip-card { height: 340px; }
+        }
+
+        @media (max-width: 900px) {
+            .cards-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .flip-card { height: 320px; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1.5rem 0.85rem 3rem; }
+
+            .status-bar { font-size: 0.72rem; padding: 0.6rem 0.9rem; }
+            .status-left, .status-right { gap: 0.6rem; }
+
+            .owner-info h1 { font-size: 1.8rem; }
+            .avatar-wrapper { width: 80px; height: 80px; font-size: 2rem; }
+            .profile-header { padding: 1.6rem 1rem 1.3rem; }
+
+            .header-actions { gap: 0.45rem; }
+            .header-btn { font-size: 0.72rem; padding: 0.5rem 0.85rem; }
+
+            .cards-row { grid-template-columns: 1fr; gap: 1rem; }
+
+            .flip-card { height: 320px; }
+
+            .front-title { font-size: 1.05rem; }
+
+            .back-to-top { bottom: 1.2rem; left: 1.2rem; width: 42px; height: 42px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span><i class="fas fa-clock"></i> آخرین به‌روزرسانی: ۱۹ شهریور ۱۴۰۵</span>
+            </div>
+            <div class="status-right">
+                <span><i class="fas fa-book"></i> ۸ درس</span>
+                <span><i class="fas fa-calendar"></i> ۴ نیم‌سال</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="profile-header">
+            <div class="avatar-wrapper">
+                <i class="fas fa-user-astronaut"></i>
+            </div>
+            <div class="owner-info">
+                <h1>میلاد <span class="accent">وزان</span></h1>
+                <p class="subtitle">مدرس دوره‌های علوم کامپیوتر</p>
+            </div>
+
+            <div class="header-actions">
+                <a href="https://miladai.ir/" class="header-btn primary" target="_blank">
+                    <i class="fas fa-globe"></i> سایت مدرس
+                </a>
+                <a href="tel:09370174459" class="header-btn">
+                    <i class="fas fa-phone"></i> ۰۹۳۷۰۱۷۴۴۵۹
+                </a>
+                <a href="mailto:vazanmilad@gmail.com" class="header-btn">
+                    <i class="fas fa-envelope"></i> vazanmilad@gmail.com
+                </a>
+            </div>
+
+            <div class="badges-row">
+                <span class="badge"><i class="fas fa-university"></i> دانشگاه شهید بهشتی</span>
+                <span class="badge"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
+            </div>
+        </header>
+
+        <!-- عنوان بخش -->
+        <div class="section-label">نیم‌سال‌ها — روی کارت کلیک کنید تا بچرخه</div>
+
+        <!-- کارت‌های سه‌بعدی افقی -->
+        <div class="cards-row">
+
+            <!-- کارت ۱: نیم‌سال اول ۱۴۰۶-۱۴۰۵ -->
+            <div class="flip-card purple" onclick="toggleCard(this)">
+                <div class="flip-inner">
+                    <!-- روی کارت -->
+                    <div class="flip-face face-front">
+                        <div class="front-top">
+                            <div class="front-icon"><i class="fas fa-layer-group"></i></div>
+                            <span class="front-badge live">در حال برگزاری</span>
+                        </div>
+                        <div class="front-body">
+                            <h3 class="front-title">نیم‌سال اول<br>۱۴۰۶-۱۴۰۵</h3>
+                            <span class="front-sub"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
+                        </div>
+                        <div class="front-foot">
+                            <span class="front-count"><i class="fas fa-book"></i> ۳ درس</span>
+                            <span class="front-hint"><i class="fas fa-rotate"></i> چرخش</span>
+                        </div>
+                    </div>
+                    <!-- پشت کارت -->
+                    <div class="flip-face face-back">
+                        <div class="back-header">
+                            <span class="back-title">نیم‌سال اول ۱۴۰۶-۱۴۰۵</span>
+                            <span class="back-close"><i class="fas fa-xmark"></i></span>
+                        </div>
+                        <div class="back-courses">
+                            <a href="https://llm.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
+                                <span class="back-course-icon"><i class="fas fa-robot"></i></span>
+                                <span class="back-course-info">
+                                    <span class="back-course-name">مدل‌های زبانی بزرگ</span>
+                                    <span class="back-course-tag">علوم کامپیوتر</span>
+                                </span>
+                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </a>
+                            <a href="https://db.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
+                                <span class="back-course-icon"><i class="fas fa-database"></i></span>
+                                <span class="back-course-info">
+                                    <span class="back-course-name">پایگاه داده</span>
+                                    <span class="back-course-tag">علوم کامپیوتر</span>
+                                </span>
+                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </a>
+                            <a href="https://ds.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
+                                <span class="back-course-icon"><i class="fas fa-code"></i></span>
+                                <span class="back-course-info">
+                                    <span class="back-course-name">ساختمان داده</span>
+                                    <span class="back-course-tag">ریاضی</span>
+                                </span>
+                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- کارت ۲: نیم‌سال دوم ۱۴۰۵-۱۴۰۴ -->
+            <div class="flip-card green" onclick="toggleCard(this)">
+                <div class="flip-inner">
+                    <div class="flip-face face-front">
+                        <div class="front-top">
+                            <div class="front-icon"><i class="fas fa-laptop-code"></i></div>
+                            <span class="front-badge">پایان‌یافته</span>
+                        </div>
+                        <div class="front-body">
+                            <h3 class="front-title">نیم‌سال دوم<br>۱۴۰۵-۱۴۰۴</h3>
+                            <span class="front-sub"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
+                        </div>
+                        <div class="front-foot">
+                            <span class="front-count"><i class="fas fa-book"></i> ۱ درس</span>
+                            <span class="front-hint"><i class="fas fa-rotate"></i> چرخش</span>
+                        </div>
+                    </div>
+                    <div class="flip-face face-back">
+                        <div class="back-header">
+                            <span class="back-title">نیم‌سال دوم ۱۴۰۵-۱۴۰۴</span>
+                            <span class="back-close"><i class="fas fa-xmark"></i></span>
+                        </div>
+                        <div class="back-courses">
+                            <a href="https://ap.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
+                                <span class="back-course-icon"><i class="fas fa-code"></i></span>
+                                <span class="back-course-info">
+                                    <span class="back-course-name">برنامه‌نویسی پیشرفته</span>
+                                    <span class="back-course-tag">ریاضی / آمار</span>
+                                </span>
+                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- کارت ۳: نیم‌سال اول ۱۴۰۴-۱۴۰۵ -->
+            <div class="flip-card blue" onclick="toggleCard(this)">
+                <div class="flip-inner">
+                    <div class="flip-face face-front">
+                        <div class="front-top">
+                            <div class="front-icon"><i class="fas fa-server"></i></div>
+                            <span class="front-badge">پایان‌یافته</span>
+                        </div>
+                        <div class="front-body">
+                            <h3 class="front-title">نیم‌سال اول<br>۱۴۰۴-۱۴۰۵</h3>
+                            <span class="front-sub"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
+                        </div>
+                        <div class="front-foot">
+                            <span class="front-count"><i class="fas fa-book"></i> ۲ درس</span>
+                            <span class="front-hint"><i class="fas fa-rotate"></i> چرخش</span>
+                        </div>
+                    </div>
+                    <div class="flip-face face-back">
+                        <div class="back-header">
+                            <span class="back-title">نیم‌سال اول ۱۴۰۴-۱۴۰۵</span>
+                            <span class="back-close"><i class="fas fa-xmark"></i></span>
+                        </div>
+                        <div class="back-courses">
+                            <a href="https://4041db.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
+                                <span class="back-course-icon"><i class="fas fa-database"></i></span>
+                                <span class="back-course-info">
+                                    <span class="back-course-name">پایگاه داده</span>
+                                    <span class="back-course-tag">علوم کامپیوتر</span>
+                                </span>
+                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </a>
+                            <a href="https://4041db.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
+                                <span class="back-course-icon"><i class="fas fa-database"></i></span>
+                                <span class="back-course-info">
+                                    <span class="back-course-name">مبانی و کاربرد پایگاه داده</span>
+                                    <span class="back-course-tag">آمار</span>
+                                </span>
+                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- کارت ۴: نیم‌سال دوم ۱۴۰۳-۱۴۰۴ -->
+            <div class="flip-card orange" onclick="toggleCard(this)">
+                <div class="flip-inner">
+                    <div class="flip-face face-front">
+                        <div class="front-top">
+                            <div class="front-icon"><i class="fas fa-chart-pie"></i></div>
+                            <span class="front-badge">پایان‌یافته</span>
+                        </div>
+                        <div class="front-body">
+                            <h3 class="front-title">نیم‌سال دوم<br>۱۴۰۳-۱۴۰۴</h3>
+                            <span class="front-sub"><i class="fas fa-graduation-cap"></i> دانشکده مدیریت</span>
+                        </div>
+                        <div class="front-foot">
+                            <span class="front-count"><i class="fas fa-book"></i> ۲ درس</span>
+                            <span class="front-hint"><i class="fas fa-rotate"></i> چرخش</span>
+                        </div>
+                    </div>
+                    <div class="flip-face face-back">
+                        <div class="back-header">
+                            <span class="back-title">نیم‌سال دوم ۱۴۰۳-۱۴۰۴</span>
+                            <span class="back-close"><i class="fas fa-xmark"></i></span>
+                        </div>
+                        <div class="back-courses">
+                            <a href="https://db4032.miladai.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
+                                <span class="back-course-icon"><i class="fas fa-database"></i></span>
+                                <span class="back-course-info">
+                                    <span class="back-course-name">پایگاه داده</span>
+                                    <span class="back-course-tag">علوم کامپیوتر</span>
+                                </span>
+                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </a>
+                            <a href="https://ta-sbu.github.io/" target="_blank" class="back-course" onclick="event.stopPropagation()">
+                                <span class="back-course-icon"><i class="fas fa-chart-line"></i></span>
+                                <span class="back-course-info">
+                                    <span class="back-course-name">یادگیری ماشین در مالی</span>
+                                    <span class="back-course-tag">مدیریت مالی</span>
+                                </span>
+                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <p>طراحی شده با <span class="heart">❤</span> برای دانشجویان عزیز</p>
+        </footer>
+
+    </div>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="بازگشت به بالا">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // چرخش کارت سه‌بعدی
+        function toggleCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        // بستن کارت‌های دیگه وقتی یکی باز می‌شه (اختیاری - تک‌کارتی)
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.flip-card').forEach(c => {
+                    if (c !== card) c.classList.remove('flipped');
+                });
+            });
+        });
+
+        // بستن کارت با کلیک بیرون
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.flip-card')) {
+                document.querySelectorAll('.flip-card.flipped').forEach(c => {
+                    c.classList.remove('flipped');
+                });
+            }
+        });
+
+        // دکمه بازگشت به بالا
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('show', window.scrollY > 400);
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>
