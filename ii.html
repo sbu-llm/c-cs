@@ -291,15 +291,15 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 1.2rem;
             margin-bottom: 2rem;
-            perspective: 1800px;
+            perspective: 2000px;
         }
 
         /* ===== کارت سه‌بعدی ===== */
         .flip-card {
             position: relative;
             width: 100%;
-            height: 360px;
-            perspective: 1400px;
+            height: 480px;
+            perspective: 1600px;
             cursor: pointer;
             animation: cardIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
         }
@@ -336,7 +336,7 @@
             border: 1px solid var(--border);
             background: var(--surface);
             box-shadow: 0 20px 50px -25px rgba(0, 0, 0, 1);
-            transition: border-color 0.3s ease, box-shadow 0.4s ease, transform 0.35s ease;
+            transition: border-color 0.3s ease, box-shadow 0.4s ease;
             display: flex;
             flex-direction: column;
         }
@@ -503,10 +503,10 @@
         .flip-card.blue:hover   .front-hint { color: var(--blue); }
         .flip-card.orange:hover .front-hint { color: var(--orange); }
 
-        /* ===== پشت کارت ===== */
+        /* ===== پشت کارت (لیست درس‌ها + دکمه‌ها) ===== */
         .face-back {
             transform: rotateY(180deg);
-            padding: 1.2rem;
+            padding: 1.1rem;
         }
 
         .back-header {
@@ -517,6 +517,7 @@
             padding-bottom: 0.7rem;
             border-bottom: 1px solid var(--border);
             gap: 0.5rem;
+            flex-shrink: 0;
         }
 
         .back-title {
@@ -552,7 +553,7 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 0.45rem;
+            gap: 0.55rem;
             overflow-y: auto;
             padding-left: 0.2rem;
         }
@@ -564,23 +565,27 @@
             border-radius: 10px;
         }
 
+        /* آیتم درس در پشت کارت */
         .back-course {
-            display: flex;
-            align-items: center;
-            gap: 0.55rem;
-            padding: 0.55rem 0.65rem;
             background: var(--surface-2);
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: 12px;
+            padding: 0.7rem 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
             transition: all 0.25s ease;
-            text-decoration: none;
-            color: inherit;
         }
 
         .back-course:hover {
             background: var(--surface-3);
             border-color: var(--border-hover);
-            transform: translateX(-3px);
+        }
+
+        .back-course-head {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
         }
 
         .back-course-icon {
@@ -590,7 +595,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             background: var(--surface-3);
             border: 1px solid var(--border);
             flex-shrink: 0;
@@ -604,33 +609,76 @@
         .back-course-info {
             flex: 1;
             min-width: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.1rem;
         }
 
         .back-course-name {
-            font-size: 0.74rem;
+            font-size: 0.76rem;
             font-weight: 700;
             color: #ffffff;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            line-height: 1.3;
         }
 
         .back-course-tag {
             font-size: 0.58rem;
             font-weight: 600;
             color: var(--text-dim);
+            display: block;
+            margin-top: 0.1rem;
         }
 
-        .back-course-arrow {
-            font-size: 0.62rem;
-            color: var(--text-dim);
-            transition: color 0.25s ease;
+        /* دکمه‌های سیلابس و تمرین */
+        .back-course-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.35rem;
         }
 
-        .back-course:hover .back-course-arrow { color: #ffffff; }
+        .mini-btn {
+            text-decoration: none;
+            padding: 0.4rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.66rem;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .mini-btn i { font-size: 0.62rem; }
+
+        /* رنگ دکمه‌ها بر اساس گروه */
+        .flip-card.purple .mini-btn.primary { background: var(--purple); color: #ffffff; }
+        .flip-card.purple .mini-btn.secondary { background: transparent; color: #c4b5fd; border-color: rgba(139, 92, 246, 0.45); }
+
+        .flip-card.green .mini-btn.primary { background: var(--green); color: #000000; }
+        .flip-card.green .mini-btn.secondary { background: transparent; color: var(--green); border-color: rgba(74, 222, 128, 0.35); }
+
+        .flip-card.blue .mini-btn.primary { background: var(--blue); color: #000000; }
+        .flip-card.blue .mini-btn.secondary { background: transparent; color: var(--blue); border-color: rgba(96, 165, 250, 0.35); }
+
+        .flip-card.orange .mini-btn.primary { background: var(--orange); color: #000000; }
+        .flip-card.orange .mini-btn.secondary { background: transparent; color: var(--orange); border-color: rgba(251, 146, 60, 0.35); }
+
+        .mini-btn.primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 6px 16px -6px currentColor;
+        }
+
+        .mini-btn.secondary:hover {
+            background: var(--surface-4);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
 
         /* ===== فوتر ===== */
         .footer {
@@ -696,14 +744,14 @@
         /* ===== واکنش‌گرا ===== */
         @media (max-width: 1100px) {
             .cards-row { gap: 1rem; }
-            .flip-card { height: 340px; }
+            .flip-card { height: 500px; }
         }
 
         @media (max-width: 900px) {
             .cards-row {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .flip-card { height: 320px; }
+            .flip-card { height: 500px; }
         }
 
         @media (max-width: 768px) {
@@ -721,7 +769,7 @@
 
             .cards-row { grid-template-columns: 1fr; gap: 1rem; }
 
-            .flip-card { height: 320px; }
+            .flip-card { height: 520px; }
 
             .front-title { font-size: 1.05rem; }
 
@@ -781,7 +829,6 @@
             <!-- کارت ۱: نیم‌سال اول ۱۴۰۶-۱۴۰۵ -->
             <div class="flip-card purple" onclick="toggleCard(this)">
                 <div class="flip-inner">
-                    <!-- روی کارت -->
                     <div class="flip-face face-front">
                         <div class="front-top">
                             <div class="front-icon"><i class="fas fa-layer-group"></i></div>
@@ -796,37 +843,54 @@
                             <span class="front-hint"><i class="fas fa-rotate"></i> چرخش</span>
                         </div>
                     </div>
-                    <!-- پشت کارت -->
                     <div class="flip-face face-back">
                         <div class="back-header">
                             <span class="back-title">نیم‌سال اول ۱۴۰۶-۱۴۰۵</span>
                             <span class="back-close"><i class="fas fa-xmark"></i></span>
                         </div>
                         <div class="back-courses">
-                            <a href="https://llm.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
-                                <span class="back-course-icon"><i class="fas fa-robot"></i></span>
-                                <span class="back-course-info">
-                                    <span class="back-course-name">مدل‌های زبانی بزرگ</span>
-                                    <span class="back-course-tag">علوم کامپیوتر</span>
-                                </span>
-                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
-                            </a>
-                            <a href="https://db.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
-                                <span class="back-course-icon"><i class="fas fa-database"></i></span>
-                                <span class="back-course-info">
-                                    <span class="back-course-name">پایگاه داده</span>
-                                    <span class="back-course-tag">علوم کامپیوتر</span>
-                                </span>
-                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
-                            </a>
-                            <a href="https://ds.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
-                                <span class="back-course-icon"><i class="fas fa-code"></i></span>
-                                <span class="back-course-info">
-                                    <span class="back-course-name">ساختمان داده</span>
-                                    <span class="back-course-tag">ریاضی</span>
-                                </span>
-                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
-                            </a>
+
+                            <div class="back-course">
+                                <div class="back-course-head">
+                                    <span class="back-course-icon"><i class="fas fa-robot"></i></span>
+                                    <span class="back-course-info">
+                                        <span class="back-course-name">مدل‌های زبانی بزرگ</span>
+                                        <span class="back-course-tag">علوم کامپیوتر</span>
+                                    </span>
+                                </div>
+                                <div class="back-course-actions">
+                                    <a href="https://llm.c-cs.ir" target="_blank" class="mini-btn primary" onclick="event.stopPropagation()"><i class="fas fa-book-open"></i> سیلابس</a>
+                                    <a href="https://llmhw.c-cs.ir" target="_blank" class="mini-btn secondary" onclick="event.stopPropagation()"><i class="fas fa-paper-plane"></i> تمرین</a>
+                                </div>
+                            </div>
+
+                            <div class="back-course">
+                                <div class="back-course-head">
+                                    <span class="back-course-icon"><i class="fas fa-database"></i></span>
+                                    <span class="back-course-info">
+                                        <span class="back-course-name">پایگاه داده</span>
+                                        <span class="back-course-tag">علوم کامپیوتر</span>
+                                    </span>
+                                </div>
+                                <div class="back-course-actions">
+                                    <a href="https://db.c-cs.ir" target="_blank" class="mini-btn primary" onclick="event.stopPropagation()"><i class="fas fa-book-open"></i> سیلابس</a>
+                                    <a href="https://dbhw.c-cs.ir" target="_blank" class="mini-btn secondary" onclick="event.stopPropagation()"><i class="fas fa-paper-plane"></i> تمرین</a>
+                                </div>
+                            </div>
+
+                            <div class="back-course">
+                                <div class="back-course-head">
+                                    <span class="back-course-icon"><i class="fas fa-code"></i></span>
+                                    <span class="back-course-info">
+                                        <span class="back-course-name">ساختمان داده</span>
+                                        <span class="back-course-tag">ریاضی</span>
+                                    </span>
+                                </div>
+                                <div class="back-course-actions">
+                                    <a href="https://ds.c-cs.ir" target="_blank" class="mini-btn secondary" onclick="event.stopPropagation()" style="grid-column: span 2;"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -855,14 +919,21 @@
                             <span class="back-close"><i class="fas fa-xmark"></i></span>
                         </div>
                         <div class="back-courses">
-                            <a href="https://ap.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
-                                <span class="back-course-icon"><i class="fas fa-code"></i></span>
-                                <span class="back-course-info">
-                                    <span class="back-course-name">برنامه‌نویسی پیشرفته</span>
-                                    <span class="back-course-tag">ریاضی / آمار</span>
-                                </span>
-                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
-                            </a>
+
+                            <div class="back-course">
+                                <div class="back-course-head">
+                                    <span class="back-course-icon"><i class="fas fa-code"></i></span>
+                                    <span class="back-course-info">
+                                        <span class="back-course-name">برنامه‌نویسی پیشرفته</span>
+                                        <span class="back-course-tag">ریاضی / آمار</span>
+                                    </span>
+                                </div>
+                                <div class="back-course-actions">
+                                    <a href="https://ap.c-cs.ir" target="_blank" class="mini-btn primary" onclick="event.stopPropagation()"><i class="fas fa-book-open"></i> سیلابس</a>
+                                    <a href="https://aphw.c-cs.ir" target="_blank" class="mini-btn secondary" onclick="event.stopPropagation()"><i class="fas fa-paper-plane"></i> تمرین</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -891,22 +962,35 @@
                             <span class="back-close"><i class="fas fa-xmark"></i></span>
                         </div>
                         <div class="back-courses">
-                            <a href="https://4041db.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
-                                <span class="back-course-icon"><i class="fas fa-database"></i></span>
-                                <span class="back-course-info">
-                                    <span class="back-course-name">پایگاه داده</span>
-                                    <span class="back-course-tag">علوم کامپیوتر</span>
-                                </span>
-                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
-                            </a>
-                            <a href="https://4041db.c-cs.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
-                                <span class="back-course-icon"><i class="fas fa-database"></i></span>
-                                <span class="back-course-info">
-                                    <span class="back-course-name">مبانی و کاربرد پایگاه داده</span>
-                                    <span class="back-course-tag">آمار</span>
-                                </span>
-                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
-                            </a>
+
+                            <div class="back-course">
+                                <div class="back-course-head">
+                                    <span class="back-course-icon"><i class="fas fa-database"></i></span>
+                                    <span class="back-course-info">
+                                        <span class="back-course-name">پایگاه داده</span>
+                                        <span class="back-course-tag">علوم کامپیوتر</span>
+                                    </span>
+                                </div>
+                                <div class="back-course-actions">
+                                    <a href="https://4041db.c-cs.ir" target="_blank" class="mini-btn primary" onclick="event.stopPropagation()"><i class="fas fa-book-open"></i> سیلابس</a>
+                                    <a href="https://db4041.c-cs.ir" target="_blank" class="mini-btn secondary" onclick="event.stopPropagation()"><i class="fas fa-paper-plane"></i> تمرین</a>
+                                </div>
+                            </div>
+
+                            <div class="back-course">
+                                <div class="back-course-head">
+                                    <span class="back-course-icon"><i class="fas fa-database"></i></span>
+                                    <span class="back-course-info">
+                                        <span class="back-course-name">مبانی و کاربرد پایگاه داده</span>
+                                        <span class="back-course-tag">آمار</span>
+                                    </span>
+                                </div>
+                                <div class="back-course-actions">
+                                    <a href="https://4041db.c-cs.ir" target="_blank" class="mini-btn primary" onclick="event.stopPropagation()"><i class="fas fa-book-open"></i> سیلابس</a>
+                                    <a href="https://db4041.c-cs.ir" target="_blank" class="mini-btn secondary" onclick="event.stopPropagation()"><i class="fas fa-paper-plane"></i> تمرین</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -935,22 +1019,33 @@
                             <span class="back-close"><i class="fas fa-xmark"></i></span>
                         </div>
                         <div class="back-courses">
-                            <a href="https://db4032.miladai.ir" target="_blank" class="back-course" onclick="event.stopPropagation()">
-                                <span class="back-course-icon"><i class="fas fa-database"></i></span>
-                                <span class="back-course-info">
-                                    <span class="back-course-name">پایگاه داده</span>
-                                    <span class="back-course-tag">علوم کامپیوتر</span>
-                                </span>
-                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
-                            </a>
-                            <a href="https://ta-sbu.github.io/" target="_blank" class="back-course" onclick="event.stopPropagation()">
-                                <span class="back-course-icon"><i class="fas fa-chart-line"></i></span>
-                                <span class="back-course-info">
-                                    <span class="back-course-name">یادگیری ماشین در مالی</span>
-                                    <span class="back-course-tag">مدیریت مالی</span>
-                                </span>
-                                <span class="back-course-arrow"><i class="fas fa-arrow-left"></i></span>
-                            </a>
+
+                            <div class="back-course">
+                                <div class="back-course-head">
+                                    <span class="back-course-icon"><i class="fas fa-database"></i></span>
+                                    <span class="back-course-info">
+                                        <span class="back-course-name">پایگاه داده</span>
+                                        <span class="back-course-tag">علوم کامپیوتر</span>
+                                    </span>
+                                </div>
+                                <div class="back-course-actions">
+                                    <a href="https://db4032.miladai.ir" target="_blank" class="mini-btn primary" onclick="event.stopPropagation()" style="grid-column: span 2;"><i class="fas fa-book-open"></i> سیلابس</a>
+                                </div>
+                            </div>
+
+                            <div class="back-course">
+                                <div class="back-course-head">
+                                    <span class="back-course-icon"><i class="fas fa-chart-line"></i></span>
+                                    <span class="back-course-info">
+                                        <span class="back-course-name">یادگیری ماشین در مالی</span>
+                                        <span class="back-course-tag">مدیریت مالی</span>
+                                    </span>
+                                </div>
+                                <div class="back-course-actions">
+                                    <a href="https://ta-sbu.github.io/" target="_blank" class="mini-btn primary" onclick="event.stopPropagation()" style="grid-column: span 2;"><i class="fas fa-book-open"></i> سیلابس</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -970,12 +1065,11 @@
     </button>
 
     <script>
-        // چرخش کارت سه‌بعدی
         function toggleCard(card) {
             card.classList.toggle('flipped');
         }
 
-        // بستن کارت‌های دیگه وقتی یکی باز می‌شه (اختیاری - تک‌کارتی)
+        // بستن کارت‌های دیگه وقتی یکی باز می‌شه
         document.querySelectorAll('.flip-card').forEach(card => {
             card.addEventListener('click', () => {
                 document.querySelectorAll('.flip-card').forEach(c => {
