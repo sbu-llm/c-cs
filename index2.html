@@ -285,219 +285,241 @@
             box-shadow: 0 0 12px var(--purple);
         }
 
-        /* ===== اسکرول افقی ===== */
-        .cards-scroll {
-            display: flex;
-            gap: 1.2rem;
-            overflow-x: auto;
-            padding: 1.2rem 0.5rem 2rem;
-            scroll-snap-type: x mandatory;
-            margin-bottom: 0.5rem;
-            -webkit-overflow-scrolling: touch;
-            perspective: 1200px;
-        }
-
-        .cards-scroll::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .cards-scroll::-webkit-scrollbar-track {
-            background: var(--surface);
-            border-radius: 10px;
-            margin: 0 0.5rem;
-        }
-
-        .cards-scroll::-webkit-scrollbar-thumb {
-            background: var(--border-hover);
-            border-radius: 10px;
-        }
-
-        .cards-scroll::-webkit-scrollbar-thumb:hover {
-            background: var(--purple);
-        }
-
-        /* ===== کارت خفن ===== */
-        .semester-card {
-            position: relative;
-            flex: 0 0 330px;
-            scroll-snap-align: start;
+        /* ===== اسپاین‌های افقی (سبک جدید) ===== */
+        .spine-wrap {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 1.6rem;
-            cursor: pointer;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
             overflow: hidden;
-            min-height: 260px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1),
-                        border-color 0.35s ease,
-                        box-shadow 0.5s ease;
-            transform-style: preserve-3d;
-            will-change: transform;
-            animation: cardIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
         }
 
-        .semester-card:nth-child(1) { animation-delay: 0.1s; }
-        .semester-card:nth-child(2) { animation-delay: 0.18s; }
-        .semester-card:nth-child(3) { animation-delay: 0.26s; }
-        .semester-card:nth-child(4) { animation-delay: 0.34s; }
-
-        @keyframes cardIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* لایه‌ی گرین‌اسکن و نویز */
-        .semester-card::after {
+        .spine-wrap::before {
             content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-            background-size: 22px 22px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .semester-card:hover::after { opacity: 1; }
-
-        /* نوار رنگی سمت راست */
-        .card-accent {
             position: absolute;
             top: 0;
             right: 0;
             width: 3px;
             height: 100%;
-            z-index: 2;
-            transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-                        box-shadow 0.35s ease;
-        }
-
-        .group-purple .card-accent { background: var(--purple); }
-        .group-green  .card-accent { background: var(--green); }
-        .group-blue   .card-accent { background: var(--blue); }
-        .group-orange .card-accent { background: var(--orange); }
-
-        .semester-card:hover .card-accent { width: 5px; }
-
-        .group-purple:hover .card-accent { box-shadow: 0 0 30px var(--purple); }
-        .group-green:hover  .card-accent { box-shadow: 0 0 30px var(--green); }
-        .group-blue:hover   .card-accent { box-shadow: 0 0 30px var(--blue); }
-        .group-orange:hover .card-accent { box-shadow: 0 0 30px var(--orange); }
-
-        /* گوشه‌های تزئینی */
-        .corner {
-            position: absolute;
-            width: 14px;
-            height: 14px;
-            border-color: var(--border-hover);
-            border-style: solid;
-            transition: all 0.35s ease;
+            background: var(--purple);
             opacity: 0.5;
-            pointer-events: none;
-            z-index: 1;
+            box-shadow: 0 0 24px var(--purple);
         }
 
-        .corner.tl { top: 10px; left: 10px; border-width: 1.5px 0 0 1.5px; border-radius: 4px 0 0 0; }
-        .corner.br { bottom: 10px; right: 14px; border-width: 0 1.5px 1.5px 0; border-radius: 0 0 4px 0; }
-
-        .group-purple:hover .corner { border-color: var(--purple); opacity: 1; }
-        .group-green:hover  .corner { border-color: var(--green);  opacity: 1; }
-        .group-blue:hover   .corner { border-color: var(--blue);   opacity: 1; }
-        .group-orange:hover .corner { border-color: var(--orange); opacity: 1; }
-
-        /* Spotlight دنبال موس */
-        .card-spotlight {
-            position: absolute;
-            inset: 0;
-            border-radius: var(--radius);
-            background: radial-gradient(
-                280px circle at var(--mx, 50%) var(--my, 50%),
-                rgba(139, 92, 246, 0.15),
-                transparent 60%
-            );
-            opacity: 0;
-            transition: opacity 0.35s ease;
-            pointer-events: none;
-            z-index: 0;
+        .spine-scroll {
+            display: flex;
+            gap: 0.8rem;
+            overflow-x: auto;
+            padding: 0.5rem 0.2rem 1.2rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .group-purple .card-spotlight { background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(139, 92, 246, 0.18), transparent 60%); }
-        .group-green  .card-spotlight { background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(74, 222, 128, 0.16), transparent 60%); }
-        .group-blue   .card-spotlight { background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(96, 165, 250, 0.16), transparent 60%); }
-        .group-orange .card-spotlight { background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(251, 146, 60, 0.16), transparent 60%); }
+        .spine-scroll::-webkit-scrollbar { height: 6px; }
+        .spine-scroll::-webkit-scrollbar-track {
+            background: var(--surface-2);
+            border-radius: 10px;
+        }
+        .spine-scroll::-webkit-scrollbar-thumb {
+            background: var(--border-hover);
+            border-radius: 10px;
+        }
+        .spine-scroll::-webkit-scrollbar-thumb:hover { background: var(--purple); }
 
-        .semester-card:hover .card-spotlight { opacity: 1; }
-
-        /* محتوای کارت */
-        .card-content {
+        /* ===== اسپاین ===== */
+        .spine {
             position: relative;
-            z-index: 2;
-            transform: translateZ(30px);
+            flex: 0 0 110px;
+            height: 340px;
+            border-radius: 16px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            overflow: hidden;
+            transition: flex-basis 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                        background 0.4s ease,
+                        border-color 0.4s ease,
+                        box-shadow 0.5s ease;
+            scroll-snap-align: start;
+            animation: spineIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
             display: flex;
             flex-direction: column;
-            height: 100%;
             justify-content: space-between;
-            gap: 1.2rem;
+            padding: 1.2rem 0.9rem;
         }
 
-        .card-top {
+        .spine:nth-child(1) { animation-delay: 0.1s; }
+        .spine:nth-child(2) { animation-delay: 0.18s; }
+        .spine:nth-child(3) { animation-delay: 0.26s; }
+        .spine:nth-child(4) { animation-delay: 0.34s; }
+
+        @keyframes spineIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .spine:hover {
+            flex-basis: 320px;
+            border-color: var(--border-hover);
+        }
+
+        /* نوار رنگی بالای اسپاین */
+        .spine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            transition: height 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .spine.purple::before { background: var(--purple); }
+        .spine.green::before  { background: var(--green); }
+        .spine.blue::before   { background: var(--blue); }
+        .spine.orange::before { background: var(--orange); }
+
+        .spine:hover::before { height: 4px; }
+        .spine.purple:hover::before { box-shadow: 0 0 30px var(--purple); }
+        .spine.green:hover::before  { box-shadow: 0 0 30px var(--green); }
+        .spine.blue:hover::before   { box-shadow: 0 0 30px var(--blue); }
+        .spine.orange:hover::before { box-shadow: 0 0 30px var(--orange); }
+
+        .spine.purple:hover { box-shadow: 0 30px 60px -25px rgba(139, 92, 246, 0.5); }
+        .spine.green:hover  { box-shadow: 0 30px 60px -25px rgba(74, 222, 128, 0.4); }
+        .spine.blue:hover   { box-shadow: 0 30px 60px -25px rgba(96, 165, 250, 0.4); }
+        .spine.orange:hover { box-shadow: 0 30px 60px -25px rgba(251, 146, 60, 0.4); }
+
+        /* ===== محتوای اسپاین ===== */
+        .spine-content {
             display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* حالت بسته: عمودی */
+        .spine-closed {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: space-between;
+            height: 100%;
+            transition: opacity 0.25s ease;
         }
 
-        .card-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 15px;
+        .spine:hover .spine-closed {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+        }
+
+        .spine-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             background: var(--surface-3);
             border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-            position: relative;
+            flex-shrink: 0;
         }
 
-        .semester-card:hover .card-icon {
-            transform: scale(1.1) rotate(-8deg);
-            border-color: currentColor;
+        .spine.purple .spine-icon { color: var(--purple-soft); }
+        .spine.green .spine-icon  { color: var(--green); }
+        .spine.blue .spine-icon   { color: var(--blue); }
+        .spine.orange .spine-icon { color: var(--orange); }
+
+        /* متن عمودی */
+        .spine-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.2px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0.8rem 0;
         }
 
-        .group-purple .card-icon { color: var(--purple-soft); }
-        .group-green .card-icon  { color: var(--green); }
-        .group-blue .card-icon   { color: var(--blue); }
-        .group-orange .card-icon { color: var(--orange); }
-
-        .card-badge {
-            font-size: 0.68rem;
+        .spine-count {
+            font-size: 0.7rem;
             font-weight: 700;
-            padding: 0.3rem 0.75rem;
+            color: var(--text-soft);
+            background: var(--surface-3);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        /* حالت باز: افقی */
+        .spine-open {
+            position: absolute;
+            inset: 0;
+            padding: 1.3rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease 0.15s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .spine:hover .spine-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .spine-open-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .spine-open-top .spine-icon {
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .spine:hover .spine-open-top .spine-icon {
+            transform: scale(1.05) rotate(-8deg);
+        }
+
+        .spine-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.28rem 0.7rem;
             border-radius: 20px;
             background: var(--surface-3);
             border: 1px solid var(--border);
             color: var(--text-soft);
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            letter-spacing: 0.2px;
+            gap: 0.35rem;
+            white-space: nowrap;
         }
 
-        .card-badge.live {
+        .spine-badge.live {
             color: var(--green);
             border-color: rgba(74, 222, 128, 0.4);
             background: rgba(74, 222, 128, 0.08);
-            box-shadow: 0 0 12px -4px rgba(74, 222, 128, 0.5);
+            box-shadow: 0 0 12px -4px rgba(74, 222, 128, 0.6);
         }
 
-        .card-badge.live::before {
+        .spine-badge.live::before {
             content: '';
             width: 6px;
             height: 6px;
@@ -512,38 +534,51 @@
             50% { opacity: 0.4; }
         }
 
-        .card-body { flex: 1; }
+        .spine-open-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.55rem;
+        }
 
-        .card-title {
+        .spine-open-title {
             font-size: 1.15rem;
             font-weight: 900;
             color: #ffffff;
             letter-spacing: -0.4px;
-            line-height: 1.4;
-            margin-bottom: 0.4rem;
+            line-height: 1.35;
         }
 
-        .card-meta {
-            font-size: 0.78rem;
+        .spine-open-meta {
+            font-size: 0.75rem;
             color: var(--text-dim);
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 0.45rem;
+            gap: 0.4rem;
         }
 
-        .card-meta i { font-size: 0.72rem; }
+        .spine-open-desc {
+            font-size: 0.72rem;
+            color: var(--text-soft);
+            font-weight: 500;
+            line-height: 1.6;
+            margin-top: 0.3rem;
+            padding-top: 0.6rem;
+            border-top: 1px dashed var(--border);
+        }
 
-        .card-bottom {
+        .spine-open-bottom {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding-top: 1rem;
-            margin-top: 0.4rem;
             border-top: 1px solid var(--border);
+            margin-top: 0.8rem;
         }
 
-        .card-count {
+        .spine-open-count {
             display: flex;
             align-items: center;
             gap: 0.45rem;
@@ -552,11 +587,11 @@
             color: var(--text-soft);
         }
 
-        .card-count i { font-size: 0.8rem; opacity: 0.7; }
+        .spine-open-count i { font-size: 0.78rem; opacity: 0.7; }
 
-        .card-arrow {
-            width: 36px;
-            height: 36px;
+        .spine-open-arrow {
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -564,33 +599,14 @@
             background: var(--surface-3);
             border: 1px solid var(--border);
             color: var(--text-soft);
-            font-size: 0.82rem;
-            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
         }
 
-        .semester-card:hover .card-arrow {
-            transform: translateX(-6px);
-            background: var(--purple);
-            color: #ffffff;
-            border-color: var(--purple);
-            box-shadow: 0 0 20px -4px var(--purple);
-        }
-
-        .group-green:hover .card-arrow  { background: var(--green);  color: #000; border-color: var(--green);  box-shadow: 0 0 20px -4px var(--green); }
-        .group-blue:hover .card-arrow   { background: var(--blue);   color: #000; border-color: var(--blue);   box-shadow: 0 0 20px -4px var(--blue); }
-        .group-orange:hover .card-arrow { background: var(--orange); color: #000; border-color: var(--orange); box-shadow: 0 0 20px -4px var(--orange); }
-
-        /* هاور کارت با رنگ */
-        .semester-card:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 30px 60px -25px rgba(0,0,0,1),
-                        0 0 0 1px rgba(255,255,255,0.03);
-        }
-
-        .group-purple:hover { box-shadow: 0 30px 60px -25px rgba(0,0,0,1), 0 0 40px -10px rgba(139, 92, 246, 0.5); }
-        .group-green:hover  { box-shadow: 0 30px 60px -25px rgba(0,0,0,1), 0 0 40px -10px rgba(74, 222, 128, 0.4); }
-        .group-blue:hover   { box-shadow: 0 30px 60px -25px rgba(0,0,0,1), 0 0 40px -10px rgba(96, 165, 250, 0.4); }
-        .group-orange:hover { box-shadow: 0 30px 60px -25px rgba(0,0,0,1), 0 0 40px -10px rgba(251, 146, 60, 0.4); }
+        .spine.purple:hover .spine-open-arrow { background: var(--purple); color: #fff; border-color: var(--purple); transform: translateX(-4px); }
+        .spine.green:hover  .spine-open-arrow { background: var(--green);  color: #000; border-color: var(--green);  transform: translateX(-4px); }
+        .spine.blue:hover   .spine-open-arrow { background: var(--blue);   color: #000; border-color: var(--blue);   transform: translateX(-4px); }
+        .spine.orange:hover .spine-open-arrow { background: var(--orange); color: #000; border-color: var(--orange); transform: translateX(-4px); }
 
         /* ===== Drawer از سمت چپ ===== */
         .drawer-overlay {
@@ -631,7 +647,6 @@
             border-bottom: 1px solid var(--border);
             position: relative;
             flex-shrink: 0;
-            overflow: hidden;
         }
 
         .drawer-header::before {
@@ -641,7 +656,6 @@
             right: 0;
             width: 3px;
             height: 100%;
-            transition: background 0.3s ease;
         }
 
         .drawer.d-purple .drawer-header::before { background: var(--purple); box-shadow: 0 0 24px var(--purple); }
@@ -990,19 +1004,22 @@
             .header-actions { gap: 0.45rem; }
             .header-btn { font-size: 0.72rem; padding: 0.5rem 0.85rem; }
 
-            .cards-scroll {
-                gap: 1rem;
-                padding: 0.8rem 0.3rem 1.5rem;
+            .spine-wrap { padding: 1rem; }
+
+            .spine {
+                flex: 0 0 90px;
+                height: 280px;
+                padding: 0.9rem 0.7rem;
             }
 
-            .semester-card {
-                flex: 0 0 270px;
-                min-height: 230px;
-                padding: 1.3rem;
-            }
+            .spine:hover { flex-basis: 260px; }
 
-            .card-title { font-size: 1rem; }
-            .card-icon { width: 46px; height: 46px; font-size: 1.2rem; }
+            .spine-icon { width: 40px; height: 40px; font-size: 1rem; }
+            .spine-vertical { font-size: 0.82rem; }
+            .spine-count { font-size: 0.62rem; padding: 0.2rem 0.5rem; }
+
+            .spine-open { padding: 1rem; }
+            .spine-open-title { font-size: 1rem; }
 
             .drawer { width: 100%; max-width: 100%; }
             .drawer-title { font-size: 1.15rem; }
@@ -1010,11 +1027,6 @@
             .drawer-body { padding: 1rem 1.2rem 2rem; }
 
             .back-to-top { bottom: 1.2rem; left: 1.2rem; width: 42px; height: 42px; }
-        }
-
-        @media (max-width: 400px) {
-            .semester-card { flex: 0 0 240px; padding: 1.1rem; }
-            .card-title { font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -1062,99 +1074,119 @@
         </header>
 
         <!-- عنوان بخش -->
-        <div class="section-label">نیم‌سال‌ها — برای مشاهده درس‌ها کلیک کنید</div>
+        <div class="section-label">نیم‌سال‌ها — موس روی هر اسپاین، بازش می‌کنه / کلیک برای درس‌ها</div>
 
-        <!-- کارت‌های افقی خفن -->
-        <div class="cards-scroll">
+        <!-- اسپاین‌های افقی -->
+        <div class="spine-wrap">
+            <div class="spine-scroll">
 
-            <!-- نیم‌سال اول ۱۴۰۶-۱۴۰۵ -->
-            <div class="semester-card group-purple tilt" onclick="openDrawer('drawer-1', event)">
-                <span class="card-accent"></span>
-                <span class="corner tl"></span>
-                <span class="corner br"></span>
-                <div class="card-spotlight"></div>
-                <div class="card-content">
-                    <div class="card-top">
-                        <div class="card-icon"><i class="fas fa-layer-group"></i></div>
-                        <span class="card-badge live">در حال برگزاری</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">نیم‌سال اول<br>۱۴۰۶-۱۴۰۵</h3>
-                        <span class="card-meta"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
-                    </div>
-                    <div class="card-bottom">
-                        <span class="card-count"><i class="fas fa-book"></i> ۳ درس</span>
-                        <span class="card-arrow"><i class="fas fa-arrow-left"></i></span>
+                <!-- نیم‌سال اول ۱۴۰۶-۱۴۰۵ -->
+                <div class="spine purple" onclick="openDrawer('drawer-1')">
+                    <div class="spine-content">
+                        <!-- حالت بسته -->
+                        <div class="spine-closed">
+                            <span class="spine-icon"><i class="fas fa-layer-group"></i></span>
+                            <span class="spine-vertical">نیم‌سال اول ۱۴۰۶-۱۴۰۵</span>
+                            <span class="spine-count">۳ درس</span>
+                        </div>
+                        <!-- حالت باز -->
+                        <div class="spine-open">
+                            <div class="spine-open-top">
+                                <span class="spine-icon"><i class="fas fa-layer-group"></i></span>
+                                <span class="spine-badge live">در حال برگزاری</span>
+                            </div>
+                            <div class="spine-open-body">
+                                <h3 class="spine-open-title">نیم‌سال اول<br>۱۴۰۶-۱۴۰۵</h3>
+                                <span class="spine-open-meta"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
+                                <p class="spine-open-desc">مهندسی مدل‌های زبانی، پایگاه داده، ساختمان داده</p>
+                            </div>
+                            <div class="spine-open-bottom">
+                                <span class="spine-open-count"><i class="fas fa-book"></i> ۳ درس</span>
+                                <span class="spine-open-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- نیم‌سال دوم ۱۴۰۵-۱۴۰۴ -->
-            <div class="semester-card group-green tilt" onclick="openDrawer('drawer-2', event)">
-                <span class="card-accent"></span>
-                <span class="corner tl"></span>
-                <span class="corner br"></span>
-                <div class="card-spotlight"></div>
-                <div class="card-content">
-                    <div class="card-top">
-                        <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
-                        <span class="card-badge">پایان‌یافته</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">نیم‌سال دوم<br>۱۴۰۵-۱۴۰۴</h3>
-                        <span class="card-meta"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
-                    </div>
-                    <div class="card-bottom">
-                        <span class="card-count"><i class="fas fa-book"></i> ۱ درس</span>
-                        <span class="card-arrow"><i class="fas fa-arrow-left"></i></span>
+                <!-- نیم‌سال دوم ۱۴۰۵-۱۴۰۴ -->
+                <div class="spine green" onclick="openDrawer('drawer-2')">
+                    <div class="spine-content">
+                        <div class="spine-closed">
+                            <span class="spine-icon"><i class="fas fa-laptop-code"></i></span>
+                            <span class="spine-vertical">نیم‌سال دوم ۱۴۰۵-۱۴۰۴</span>
+                            <span class="spine-count">۱ درس</span>
+                        </div>
+                        <div class="spine-open">
+                            <div class="spine-open-top">
+                                <span class="spine-icon"><i class="fas fa-laptop-code"></i></span>
+                                <span class="spine-badge">پایان‌یافته</span>
+                            </div>
+                            <div class="spine-open-body">
+                                <h3 class="spine-open-title">نیم‌سال دوم<br>۱۴۰۵-۱۴۰۴</h3>
+                                <span class="spine-open-meta"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
+                                <p class="spine-open-desc">برنامه‌نویسی پیشرفته</p>
+                            </div>
+                            <div class="spine-open-bottom">
+                                <span class="spine-open-count"><i class="fas fa-book"></i> ۱ درس</span>
+                                <span class="spine-open-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- نیم‌سال اول ۱۴۰۴-۱۴۰۵ -->
-            <div class="semester-card group-blue tilt" onclick="openDrawer('drawer-3', event)">
-                <span class="card-accent"></span>
-                <span class="corner tl"></span>
-                <span class="corner br"></span>
-                <div class="card-spotlight"></div>
-                <div class="card-content">
-                    <div class="card-top">
-                        <div class="card-icon"><i class="fas fa-server"></i></div>
-                        <span class="card-badge">پایان‌یافته</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">نیم‌سال اول<br>۱۴۰۴-۱۴۰۵</h3>
-                        <span class="card-meta"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
-                    </div>
-                    <div class="card-bottom">
-                        <span class="card-count"><i class="fas fa-book"></i> ۲ درس</span>
-                        <span class="card-arrow"><i class="fas fa-arrow-left"></i></span>
+                <!-- نیم‌سال اول ۱۴۰۴-۱۴۰۵ -->
+                <div class="spine blue" onclick="openDrawer('drawer-3')">
+                    <div class="spine-content">
+                        <div class="spine-closed">
+                            <span class="spine-icon"><i class="fas fa-server"></i></span>
+                            <span class="spine-vertical">نیم‌سال اول ۱۴۰۴-۱۴۰۵</span>
+                            <span class="spine-count">۲ درس</span>
+                        </div>
+                        <div class="spine-open">
+                            <div class="spine-open-top">
+                                <span class="spine-icon"><i class="fas fa-server"></i></span>
+                                <span class="spine-badge">پایان‌یافته</span>
+                            </div>
+                            <div class="spine-open-body">
+                                <h3 class="spine-open-title">نیم‌سال اول<br>۱۴۰۴-۱۴۰۵</h3>
+                                <span class="spine-open-meta"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
+                                <p class="spine-open-desc">پایگاه داده، مبانی و کاربرد پایگاه داده‌ها</p>
+                            </div>
+                            <div class="spine-open-bottom">
+                                <span class="spine-open-count"><i class="fas fa-book"></i> ۲ درس</span>
+                                <span class="spine-open-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- نیم‌سال دوم ۱۴۰۳-۱۴۰۴ -->
-            <div class="semester-card group-orange tilt" onclick="openDrawer('drawer-4', event)">
-                <span class="card-accent"></span>
-                <span class="corner tl"></span>
-                <span class="corner br"></span>
-                <div class="card-spotlight"></div>
-                <div class="card-content">
-                    <div class="card-top">
-                        <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
-                        <span class="card-badge">پایان‌یافته</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">نیم‌سال دوم<br>۱۴۰۳-۱۴۰۴</h3>
-                        <span class="card-meta"><i class="fas fa-graduation-cap"></i> دانشکده مدیریت</span>
-                    </div>
-                    <div class="card-bottom">
-                        <span class="card-count"><i class="fas fa-book"></i> ۲ درس</span>
-                        <span class="card-arrow"><i class="fas fa-arrow-left"></i></span>
+                <!-- نیم‌سال دوم ۱۴۰۳-۱۴۰۴ -->
+                <div class="spine orange" onclick="openDrawer('drawer-4')">
+                    <div class="spine-content">
+                        <div class="spine-closed">
+                            <span class="spine-icon"><i class="fas fa-chart-pie"></i></span>
+                            <span class="spine-vertical">نیم‌سال دوم ۱۴۰۳-۱۴۰۴</span>
+                            <span class="spine-count">۲ درس</span>
+                        </div>
+                        <div class="spine-open">
+                            <div class="spine-open-top">
+                                <span class="spine-icon"><i class="fas fa-chart-pie"></i></span>
+                                <span class="spine-badge">پایان‌یافته</span>
+                            </div>
+                            <div class="spine-open-body">
+                                <h3 class="spine-open-title">نیم‌سال دوم<br>۱۴۰۳-۱۴۰۴</h3>
+                                <span class="spine-open-meta"><i class="fas fa-graduation-cap"></i> دانشکده مدیریت</span>
+                                <p class="spine-open-desc">پایگاه داده، یادگیری ماشین در مالی</p>
+                            </div>
+                            <div class="spine-open-bottom">
+                                <span class="spine-open-count"><i class="fas fa-book"></i> ۲ درس</span>
+                                <span class="spine-open-arrow"><i class="fas fa-arrow-left"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
 
         <footer class="footer">
@@ -1356,47 +1388,17 @@
     </button>
 
     <script>
-        // ===== افکت Tilt سه‌بعدی + Spotlight =====
-        document.querySelectorAll('.tilt').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                // Spotlight
-                card.style.setProperty('--mx', x + 'px');
-                card.style.setProperty('--my', y + 'px');
-
-                // Tilt سه‌بعدی (خیلی ملایم)
-                const cx = rect.width / 2;
-                const cy = rect.height / 2;
-                const rx = ((y - cy) / cy) * -4;
-                const ry = ((x - cx) / cx) * 4;
-
-                card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px) scale(1.02)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
-        });
-
-        // ===== باز کردن Drawer =====
-        function openDrawer(id, event) {
+        // باز کردن Drawer
+        function openDrawer(id) {
             const drawer = document.getElementById(id);
             if (!drawer) return;
-
-            // جلوگیری از پرش کارت در لحظه کلیک
-            document.querySelectorAll('.tilt').forEach(c => {
-                c.style.transform = '';
-            });
 
             document.getElementById('drawerOverlay').classList.add('show');
             drawer.classList.add('show');
             document.body.style.overflow = 'hidden';
         }
 
-        // ===== بستن Drawer =====
+        // بستن Drawer
         function closeDrawer() {
             document.querySelectorAll('.drawer').forEach(d => d.classList.remove('show'));
             document.getElementById('drawerOverlay').classList.remove('show');
@@ -1407,7 +1409,7 @@
             if (e.key === 'Escape') closeDrawer();
         });
 
-        // ===== دکمه بازگشت به بالا =====
+        // دکمه بازگشت به بالا
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             backToTop.classList.toggle('show', window.scrollY > 400);
