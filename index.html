@@ -9,25 +9,28 @@
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 
         :root {
-            --bg: #0e0e13;
-            --surface: #16161d;
-            --surface-2: #1c1c25;
-            --border: #26262f;
-            --border-hover: #34343f;
+            --bg: #000000;
+            --surface: #0a0a0a;
+            --surface-2: #101010;
+            --surface-3: #161616;
+            --surface-4: #1c1c1c;
+            --border: #1e1e1e;
+            --border-hover: #2d2d2d;
 
-            --text-main: #f4f4f7;
-            --text-soft: #a1a1ac;
-            --text-dim: #6b6b78;
+            --text-main: #fafafa;
+            --text-soft: #9a9a9a;
+            --text-dim: #555555;
 
-            --purple: #a78bfa;
-            --green: #34d399;
+            --purple: #8b5cf6;
+            --green: #4ade80;
             --blue: #60a5fa;
             --orange: #fb923c;
             --pink: #f472b6;
-            --yellow: #fbbf24;
+            --yellow: #facc15;
 
-            --radius: 20px;
-            --radius-sm: 14px;
+            --radius: 16px;
+            --radius-sm: 12px;
+            --radius-xs: 8px;
         }
 
         * {
@@ -46,206 +49,296 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            padding: 3rem 1rem 4rem;
-            line-height: 1.75;
+            padding: 2.5rem 1rem 5rem;
+            line-height: 1.7;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* بافت نقطه‌ای ظریف پس‌زمینه */
         body::before {
             content: '';
             position: fixed;
-            inset: 0;
-            background-image: radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
-            background-size: 22px 22px;
-            z-index: 0;
+            top: -400px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent 65%);
             pointer-events: none;
+            z-index: 0;
         }
 
         .container {
-            max-width: 920px;
+            max-width: 880px;
             width: 100%;
             position: relative;
             z-index: 1;
-            animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: fadeUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(24px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* ===== نوار بالا ===== */
+        .status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 1.1rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+            animation-delay: 0.05s;
+        }
+
+        .status-left,
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green);
+            animation: blink 2.4s ease-in-out infinite;
+            display: inline-block;
+            margin-left: 0.4rem;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .status-bar i { font-size: 0.7rem; opacity: 0.6; }
+
         /* ===== هدر ===== */
         .profile-header {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem 1.6rem;
+            margin-bottom: 1.2rem;
             text-align: center;
-            margin-bottom: 3.2rem;
+            position: relative;
+            overflow: hidden;
+            animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+            animation-delay: 0.1s;
+        }
+
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: var(--purple);
+            opacity: 0.6;
+            box-shadow: 0 0 24px var(--purple);
         }
 
         .avatar-wrapper {
-            width: 104px;
-            height: 104px;
-            margin: 0 auto 1.6rem;
-            border-radius: 28px;
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 1.4rem;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
-            font-size: 2.8rem;
+            color: var(--purple);
+            font-size: 2.4rem;
             background: var(--surface-2);
             border: 1px solid var(--border);
-            box-shadow: 0 24px 48px -20px rgba(0, 0, 0, 0.9),
-                        0 0 0 6px rgba(167, 139, 250, 0.06);
-            transform: rotate(-6deg);
-            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
-                        box-shadow 0.5s ease;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
             position: relative;
         }
 
         .avatar-wrapper::after {
             content: '';
             position: absolute;
-            top: -4px;
-            right: -4px;
-            width: 14px;
-            height: 14px;
+            bottom: 6px;
+            left: 6px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background: var(--green);
-            border: 3px solid var(--bg);
-            box-shadow: 0 0 12px rgba(52, 211, 153, 0.6);
+            border: 2px solid var(--surface);
+            box-shadow: 0 0 10px var(--green);
         }
 
         .avatar-wrapper:hover {
-            transform: rotate(0deg) scale(1.06);
-            box-shadow: 0 28px 56px -20px rgba(0, 0, 0, 1),
-                        0 0 0 6px rgba(167, 139, 250, 0.14);
-        }
-
-        .avatar-wrapper i {
-            color: var(--purple);
+            transform: scale(1.05);
+            border-color: var(--purple);
+            box-shadow: 0 0 40px -8px rgba(139, 92, 246, 0.7);
         }
 
         .owner-info h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 900;
             letter-spacing: -1.5px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             color: var(--text-main);
         }
 
-        .owner-info h1 .accent {
-            color: var(--purple);
-        }
+        .owner-info h1 .accent { color: var(--purple); }
 
         .subtitle {
             color: var(--text-soft);
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             font-weight: 400;
-            margin-bottom: 1.4rem;
+            margin-bottom: 1.3rem;
         }
+
+        /* دکمه‌های اکشن هدر */
+        .header-actions {
+            display: flex;
+            justify-content: center;
+            gap: 0.55rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .header-btn {
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.55rem 1.1rem;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text-soft);
+            cursor: pointer;
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--border-hover);
+            color: var(--text-main);
+        }
+
+        .header-btn.primary {
+            background: var(--purple);
+            color: #fff;
+            border-color: var(--purple);
+        }
+
+        .header-btn.primary:hover {
+            box-shadow: 0 8px 24px -8px var(--purple);
+        }
+
+        .header-btn i { font-size: 0.85rem; }
 
         .badges-row {
             display: flex;
             justify-content: center;
-            gap: 0.7rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--border);
         }
 
         .badge {
-            font-size: 0.82rem;
+            font-size: 0.75rem;
             font-weight: 500;
-            padding: 0.5rem 1.1rem;
+            padding: 0.4rem 0.9rem;
             border-radius: 30px;
-            background: var(--surface);
+            background: transparent;
             border: 1px solid var(--border);
-            color: var(--text-soft);
+            color: var(--text-dim);
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.45rem;
             transition: all 0.3s ease;
         }
 
-        .badge:hover {
-            border-color: var(--border-hover);
-            color: var(--text-main);
-            transform: translateY(-2px);
-        }
+        .badge:hover { border-color: var(--border-hover); color: var(--text-soft); }
 
-        .badge i { color: var(--purple); }
+        .badge i { color: var(--purple); font-size: 0.75rem; }
 
         /* ===== کارت نیم‌سال ===== */
         .semester-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 1.6rem;
-            margin-bottom: 1.6rem;
+            padding: 1.4rem;
+            margin-bottom: 1.2rem;
             position: relative;
             overflow: hidden;
-            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-                        border-color 0.3s ease,
-                        box-shadow 0.4s ease;
-            animation: cardIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+            transition: border-color 0.3s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: cardIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
         }
 
-        .semester-card:nth-of-type(1) { animation-delay: 0.05s; }
-        .semester-card:nth-of-type(2) { animation-delay: 0.1s; }
-        .semester-card:nth-of-type(3) { animation-delay: 0.15s; }
-        .semester-card:nth-of-type(4) { animation-delay: 0.2s; }
+        .semester-card:nth-of-type(1) { animation-delay: 0.15s; }
+        .semester-card:nth-of-type(2) { animation-delay: 0.2s; }
+        .semester-card:nth-of-type(3) { animation-delay: 0.25s; }
+        .semester-card:nth-of-type(4) { animation-delay: 0.3s; }
 
         @keyframes cardIn {
-            from { opacity: 0; transform: translateY(24px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* نوار رنگی سمت راست */
         .semester-card::before {
             content: '';
             position: absolute;
             top: 0;
             right: 0;
-            width: 4px;
+            width: 2px;
             height: 100%;
-            transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: width 0.3s ease;
         }
 
-        .semester-card:hover::before { width: 6px; }
+        .semester-card:hover::before { width: 3px; }
 
         .semester-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             border-color: var(--border-hover);
-            box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 1);
         }
 
-        .group-purple::before { background: var(--purple); }
-        .group-green::before  { background: var(--green); }
-        .group-blue::before   { background: var(--blue); }
-        .group-orange::before { background: var(--orange); }
+        .group-purple::before { background: var(--purple); box-shadow: 0 0 24px var(--purple); }
+        .group-green::before  { background: var(--green);  box-shadow: 0 0 24px var(--green); }
+        .group-blue::before   { background: var(--blue);   box-shadow: 0 0 24px var(--blue); }
+        .group-orange::before { background: var(--orange); box-shadow: 0 0 24px var(--orange); }
 
-        /* ===== عنوان نیم‌سال ===== */
         .semester-title {
-            font-size: 1.1rem;
+            font-size: 0.98rem;
             font-weight: 700;
-            margin-bottom: 1.4rem;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 0.85rem;
-            padding-bottom: 1.1rem;
+            gap: 0.75rem;
+            padding-bottom: 0.9rem;
             border-bottom: 1px solid var(--border);
             color: var(--text-main);
-            letter-spacing: -0.3px;
+            letter-spacing: -0.2px;
         }
 
         .semester-title .icon-chip {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.05rem;
+            font-size: 0.9rem;
             flex-shrink: 0;
-            background: var(--surface-2);
+            background: var(--surface-3);
             border: 1px solid var(--border);
         }
 
@@ -254,27 +347,30 @@
         .group-blue .icon-chip   { color: var(--blue); }
         .group-orange .icon-chip { color: var(--orange); }
 
-        .semester-title .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
+        .semester-title .count {
             margin-right: auto;
-            background: var(--border-hover);
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            background: var(--surface-3);
+            border: 1px solid var(--border);
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
         }
 
         /* ===== آیتم درس ===== */
         .course-list {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 0.55rem;
         }
 
         .course-item {
             display: grid;
             grid-template-columns: auto 1fr auto;
-            gap: 1.2rem;
+            gap: 1rem;
             align-items: center;
-            padding: 1.1rem;
+            padding: 0.95rem;
             border-radius: var(--radius-sm);
             background: var(--surface-2);
             border: 1px solid transparent;
@@ -282,46 +378,62 @@
             position: relative;
         }
 
-        .course-item:hover {
-            border-color: var(--border);
-            transform: translateX(-4px);
+        .course-item::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 0;
+            background: currentColor;
+            transition: height 0.3s ease;
+            border-radius: 2px;
         }
 
+        .course-item:hover::before { height: 40%; }
+
+        .group-purple .course-item:hover { color: var(--purple); border-color: rgba(139, 92, 246, 0.25); }
+        .group-green  .course-item:hover { color: var(--green);  border-color: rgba(74, 222, 128, 0.2); }
+        .group-blue   .course-item:hover { color: var(--blue);   border-color: rgba(96, 165, 250, 0.2); }
+        .group-orange .course-item:hover { color: var(--orange); border-color: rgba(251, 146, 60, 0.2); }
+
         .course-icon-box {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             flex-shrink: 0;
-            background: var(--surface);
+            background: var(--surface-3);
             border: 1px solid var(--border);
-            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .course-item:hover .course-icon-box {
-            transform: scale(1.08) rotate(-6deg);
+            transform: scale(1.08) rotate(-8deg);
+            border-color: currentColor;
         }
 
-        .group-purple .course-icon-box { color: var(--purple); border-color: rgba(167, 139, 250, 0.25); }
-        .group-green .course-icon-box  { color: var(--green); border-color: rgba(52, 211, 153, 0.25); }
-        .group-blue .course-icon-box   { color: var(--blue); border-color: rgba(96, 165, 250, 0.25); }
-        .group-orange .course-icon-box { color: var(--orange); border-color: rgba(251, 146, 60, 0.25); }
+        .group-purple .course-icon-box { color: var(--purple); }
+        .group-green .course-icon-box  { color: var(--green); }
+        .group-blue .course-icon-box   { color: var(--blue); }
+        .group-orange .course-icon-box { color: var(--orange); }
 
         .course-details h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 0.45rem;
+            margin-bottom: 0.35rem;
             letter-spacing: -0.2px;
         }
 
         .course-meta {
             display: flex;
-            gap: 0.9rem;
-            font-size: 0.78rem;
+            gap: 0.8rem;
+            font-size: 0.74rem;
             color: var(--text-dim);
             flex-wrap: wrap;
             align-items: center;
@@ -333,39 +445,35 @@
             gap: 0.35rem;
         }
 
-        .course-meta i {
-            font-size: 0.75rem;
-            opacity: 0.7;
-        }
+        .course-meta i { font-size: 0.7rem; opacity: 0.7; }
 
-        /* تگ‌ها - تخت و ساده */
         .course-tag {
-            padding: 0.15rem 0.7rem;
+            padding: 0.1rem 0.6rem;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.66rem;
             font-weight: 600;
             display: inline-block;
-            background: var(--surface);
+            background: var(--surface-3);
             border: 1px solid var(--border);
             color: var(--text-soft);
         }
 
-        .course-tag.cs      { color: var(--purple); border-color: rgba(167, 139, 250, 0.3); }
+        .course-tag.cs      { color: var(--purple); border-color: rgba(139, 92, 246, 0.35); }
         .course-tag.math    { color: var(--pink);   border-color: rgba(244, 114, 182, 0.3); }
-        .course-tag.stat    { color: var(--yellow); border-color: rgba(251, 191, 36, 0.3); }
-        .course-tag.finance { color: var(--green);  border-color: rgba(52, 211, 153, 0.3); }
+        .course-tag.stat    { color: var(--yellow); border-color: rgba(250, 204, 21, 0.3); }
+        .course-tag.finance { color: var(--green);  border-color: rgba(74, 222, 128, 0.3); }
 
         .note-tag {
-            font-size: 0.72rem;
-            background: var(--surface);
+            font-size: 0.68rem;
+            background: var(--surface-3);
             color: var(--yellow);
-            border: 1px solid rgba(251, 191, 36, 0.25);
-            padding: 0.28rem 0.7rem;
+            border: 1px solid rgba(250, 204, 21, 0.2);
+            padding: 0.22rem 0.6rem;
             border-radius: 8px;
-            margin-top: 0.55rem;
+            margin-top: 0.45rem;
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.35rem;
             font-weight: 500;
         }
 
@@ -373,65 +481,66 @@
             content: '\f05a';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
         }
 
         /* ===== دکمه‌ها ===== */
         .action-buttons {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-            min-width: 148px;
+            gap: 0.4rem;
+            min-width: 138px;
         }
 
         .btn {
             text-decoration: none;
-            padding: 0.65rem 1rem;
-            border-radius: 12px;
-            font-size: 0.82rem;
+            padding: 0.55rem 1rem;
+            border-radius: 10px;
+            font-size: 0.78rem;
             font-weight: 600;
             text-align: center;
             transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.42rem;
             border: 1px solid transparent;
             cursor: pointer;
         }
 
-        .btn i { font-size: 0.85rem; }
+        .btn i { font-size: 0.78rem; }
 
-        /* دکمه اصلی: پس‌زمینه تخت + سایه رنگی */
-        .group-purple .btn-primary { background: var(--purple); color: #14141c; box-shadow: 0 10px 24px -12px rgba(167, 139, 250, 0.9); }
-        .group-green .btn-primary  { background: var(--green);  color: #14141c; box-shadow: 0 10px 24px -12px rgba(52, 211, 153, 0.9); }
-        .group-blue .btn-primary   { background: var(--blue);   color: #14141c; box-shadow: 0 10px 24px -12px rgba(96, 165, 250, 0.9); }
-        .group-orange .btn-primary { background: var(--orange); color: #14141c; box-shadow: 0 10px 24px -12px rgba(251, 146, 60, 0.9); }
+        .group-purple .btn-primary { background: var(--purple); color: #fff; }
+        .group-green  .btn-primary { background: var(--green);  color: #000; }
+        .group-blue   .btn-primary { background: var(--blue);   color: #000; }
+        .group-orange .btn-primary { background: var(--orange); color: #000; }
 
-        /* دکمه ثانویه: خطی */
-        .group-purple .btn-secondary { background: transparent; color: var(--purple); border-color: rgba(167, 139, 250, 0.35); }
-        .group-green .btn-secondary  { background: transparent; color: var(--green);  border-color: rgba(52, 211, 153, 0.35); }
-        .group-blue .btn-secondary   { background: transparent; color: var(--blue);   border-color: rgba(96, 165, 250, 0.35); }
-        .group-orange .btn-secondary { background: transparent; color: var(--orange); border-color: rgba(251, 146, 60, 0.35); }
+        .group-purple .btn-secondary { background: transparent; color: var(--purple); border-color: rgba(139, 92, 246, 0.4); }
+        .group-green  .btn-secondary { background: transparent; color: var(--green);  border-color: var(--border); }
+        .group-blue   .btn-secondary { background: transparent; color: var(--blue);   border-color: var(--border); }
+        .group-orange .btn-secondary { background: transparent; color: var(--orange); border-color: var(--border); }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -8px currentColor;
+        }
 
         .btn-secondary:hover {
-            background: var(--surface-2);
+            background: var(--surface-3);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-        }
-
-        .btn:active { transform: translateY(-1px); }
+        .btn:active { transform: translateY(0); }
 
         /* ===== فوتر ===== */
         .footer {
             text-align: center;
-            margin-top: 3.5rem;
-            padding-top: 2.2rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
             border-top: 1px solid var(--border);
             color: var(--text-dim);
-            font-size: 0.88rem;
+            font-size: 0.82rem;
         }
 
         .footer p {
@@ -452,22 +561,66 @@
             50% { transform: scale(1); }
         }
 
+        /* ===== دکمه شناور بالا ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            color: var(--text-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            font-size: 0.9rem;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            background: var(--purple);
+            color: #fff;
+            border-color: var(--purple);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px -8px var(--purple);
+        }
+
         /* ===== واکنش‌گرا ===== */
         @media (max-width: 768px) {
-            body { padding: 2rem 0.9rem 3rem; }
+            body { padding: 1.5rem 0.85rem 3rem; }
 
-            .owner-info h1 { font-size: 2rem; }
+            .status-bar { font-size: 0.7rem; padding: 0.6rem 0.9rem; }
+            .status-left, .status-right { gap: 0.6rem; }
 
-            .avatar-wrapper { width: 88px; height: 88px; font-size: 2.3rem; border-radius: 24px; }
+            .owner-info h1 { font-size: 1.8rem; }
+
+            .avatar-wrapper { width: 80px; height: 80px; font-size: 2rem; }
+
+            .profile-header { padding: 1.6rem 1rem 1.3rem; }
+
+            .header-actions { gap: 0.45rem; }
+            .header-btn { font-size: 0.72rem; padding: 0.5rem 0.85rem; }
 
             .course-item {
                 grid-template-columns: 1fr;
-                gap: 0.9rem;
+                gap: 0.8rem;
                 text-align: center;
-                padding: 1.2rem 0.9rem;
+                padding: 1rem 0.85rem;
             }
 
-            .course-item:hover { transform: translateY(-4px); }
+            .course-item::before { display: none; }
+            .course-item:hover { transform: translateY(-3px); }
 
             .course-icon-box { margin: 0 auto; }
 
@@ -479,17 +632,31 @@
                 min-width: 0;
             }
 
-            .btn { flex: 1; padding: 0.7rem 0.6rem; font-size: 0.78rem; }
+            .btn { flex: 1; padding: 0.6rem 0.55rem; font-size: 0.74rem; }
 
-            .semester-card { padding: 1.2rem; }
+            .semester-card { padding: 1rem; }
 
-            .semester-title { font-size: 1rem; }
+            .semester-title { font-size: 0.9rem; }
+
+            .back-to-top { bottom: 1.2rem; left: 1.2rem; width: 42px; height: 42px; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span><span class="status-dot"></span> آنلاین</span>
+                <span><i class="fas fa-clock"></i> به‌روزرسانی: امروز</span>
+            </div>
+            <div class="status-right">
+                <span><i class="fas fa-book"></i> ۸ درس</span>
+                <span><i class="fas fa-calendar"></i> ۴ نیم‌سال</span>
+            </div>
+        </div>
 
         <!-- Header -->
         <header class="profile-header">
@@ -498,11 +665,24 @@
             </div>
             <div class="owner-info">
                 <h1>میلاد <span class="accent">وزان</span></h1>
-                <p class="subtitle">مدرس دوره‌های کامپیوتر</p>
-                <div class="badges-row">
-                    <span class="badge"><i class="fas fa-university"></i> دانشگاه شهید بهشتی</span>
-                    <span class="badge"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
-                </div>
+                <p class="subtitle">مدرس دوره‌های علوم کامپیوتر، ریاضی و مالی</p>
+            </div>
+
+            <div class="header-actions">
+                <a href="https://miladai.ir/" class="header-btn primary" target="_blank">
+                    <i class="fas fa-globe"></i> سایت مدرس
+                </a>
+                <a href="tel:09370174459" class="header-btn">
+                    <i class="fas fa-phone"></i> ۰۹۳۷۰۱۷۴۴۵۹
+                </a>
+                <a href="mailto:vazanmilad@gmail.com" class="header-btn">
+                    <i class="fas fa-envelope"></i> vazanmilad@gmail.com
+                </a>
+            </div>
+
+            <div class="badges-row">
+                <span class="badge"><i class="fas fa-university"></i> دانشگاه شهید بهشتی</span>
+                <span class="badge"><i class="fas fa-graduation-cap"></i> دانشکده ریاضی</span>
             </div>
         </header>
 
@@ -511,7 +691,7 @@
             <div class="semester-title">
                 <span class="icon-chip"><i class="fas fa-layer-group"></i></span>
                 نیم‌سال اول ۱۴۰۶-۱۴۰۵
-                <span class="dot"></span>
+                <span class="count">۳ درس</span>
             </div>
             <div class="course-list">
                 
@@ -568,7 +748,7 @@
             <div class="semester-title">
                 <span class="icon-chip"><i class="fas fa-laptop-code"></i></span>
                 نیم‌سال دوم ۱۴۰۵-۱۴۰۴
-                <span class="dot"></span>
+                <span class="count">۱ درس</span>
             </div>
             <div class="course-list">
                 
@@ -595,7 +775,7 @@
             <div class="semester-title">
                 <span class="icon-chip"><i class="fas fa-server"></i></span>
                 نیم‌سال اول ۱۴۰۴-۱۴۰۵
-                <span class="dot"></span>
+                <span class="count">۲ درس</span>
             </div>
             <div class="course-list">
                 
@@ -605,8 +785,22 @@
                         <h3>پایگاه داده</h3>
                         <div class="course-meta">
                             <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
-                            <span class="course-tag stat">آمار</span>
                             <span class="course-tag cs">علوم کامپیوتر</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="https://4041db.c-cs.ir" class="btn btn-primary" target="_blank"><i class="fas fa-book-open"></i> سیلابس</a>
+                        <a href="https://db4041.c-cs.ir" class="btn btn-secondary" target="_blank"><i class="fas fa-paper-plane"></i> ارسال تمرین</a>
+                    </div>
+                </div>
+
+                <div class="course-item">
+                    <div class="course-icon-box"><i class="fas fa-database"></i></div>
+                    <div class="course-details">
+                        <h3>مبانی و کاربرد پایگاه داده‌ها</h3>
+                        <div class="course-meta">
+                            <span><i class="fas fa-building"></i> دانشکده ریاضی</span>
+                            <span class="course-tag stat">آمار</span>
                         </div>
                     </div>
                     <div class="action-buttons">
@@ -622,7 +816,7 @@
             <div class="semester-title">
                 <span class="icon-chip"><i class="fas fa-chart-pie"></i></span>
                 نیم‌سال دوم ۱۴۰۳-۱۴۰۴
-                <span class="dot"></span>
+                <span class="count">۲ درس</span>
             </div>
             <div class="course-list">
                 
@@ -662,6 +856,22 @@
         </footer>
 
     </div>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="بازگشت به بالا">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // دکمه بازگشت به بالا
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('show', window.scrollY > 400);
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 
 </body>
 </html>
