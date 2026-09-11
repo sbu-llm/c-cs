@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دوره‌های میلاد وزان</title>
+    <title>bitmath | دوره‌های میلاد وزان</title>
+    <meta name="description" content="bitmath — Think in bits. Solve with math.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
@@ -17,9 +18,9 @@
             --border: #1a1a1a;
             --border-hover: #2a2a2a;
 
-            --text-main: #ffffff;
-            --text-soft: #d4d4d4;
-            --text-dim: #8a8a8a;
+            --text-main: #e8e8e8;
+            --text-soft: #b8b8b8;
+            --text-dim: #7a7a7a;
 
             --purple: #8b5cf6;
             --purple-soft: #a78bfa;
@@ -176,7 +177,7 @@
             font-weight: 900;
             letter-spacing: -1.5px;
             margin-bottom: 0.4rem;
-            color: #ffffff;
+            color: var(--text-main);
         }
 
         .owner-info h1 .accent {
@@ -191,12 +192,107 @@
             margin-bottom: 1.3rem;
         }
 
+        /* ===== شعار متحرک bitmath ===== */
+        .bitmath-tagline {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin: 1.6rem 0 0.6rem;
+            padding: 1rem 0;
+            direction: ltr;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.05), transparent);
+            flex-wrap: nowrap;
+        }
+
+        .bitmath-brand {
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 900;
+            letter-spacing: -0.6px;
+            color: var(--purple-soft);
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+            padding-right: 1rem;
+            border-right: 1px solid var(--border);
+        }
+
+        .bitmath-brand i {
+            font-size: 1rem;
+            margin-right: 0.4rem;
+            opacity: 0.85;
+        }
+
+        .bitmath-scroll-wrap {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+            height: 1.8rem;
+        }
+
+        .bitmath-scroll {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            animation: taglineRTL 8s linear infinite;
+            will-change: transform;
+            height: 100%;
+        }
+
+        .bitmath-scroll span {
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: var(--text-soft);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding-left: 1rem;
+            animation: taglineColor 8s ease-in-out infinite;
+            will-change: color, text-shadow;
+        }
+
+        .bitmath-scroll span i {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .bitmath-scroll .sep {
+            color: var(--purple);
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* حرکت از چپ به راست — یک بار */
+        @keyframes taglineRTL {
+            from { transform: translateX(-100%); }
+            to   { transform: translateX(100%); }
+        }
+
+        /* فقط تغییر رنگ — بدون بزرگ/کوچیک */
+        @keyframes taglineColor {
+            0%   { color: var(--text-soft); text-shadow: none; }
+            50%  { color: var(--purple-soft); text-shadow: 0 0 24px rgba(139, 92, 246, 0.8); }
+            100% { color: var(--text-soft); text-shadow: none; }
+        }
+
         .header-actions {
             display: flex;
             justify-content: center;
             gap: 0.55rem;
             flex-wrap: wrap;
             margin-bottom: 1.2rem;
+            margin-top: 1rem;
         }
 
         .header-btn {
@@ -218,7 +314,7 @@
         .header-btn:hover {
             transform: translateY(-2px);
             border-color: var(--border-hover);
-            color: #ffffff;
+            color: var(--text-main);
         }
 
         .header-btn.primary {
@@ -259,7 +355,7 @@
 
         .badge:hover {
             border-color: var(--border-hover);
-            color: #ffffff;
+            color: var(--text-main);
         }
 
         .badge i { color: var(--purple-soft); font-size: 0.78rem; }
@@ -285,7 +381,7 @@
             box-shadow: 0 0 12px var(--purple);
         }
 
-        /* ===== اسپاین‌های افقی (سبک جدید) ===== */
+        /* ===== اسپاین‌های افقی ===== */
         .spine-wrap {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -365,7 +461,6 @@
             border-color: var(--border-hover);
         }
 
-        /* نوار رنگی بالای اسپاین */
         .spine::before {
             content: '';
             position: absolute;
@@ -392,7 +487,6 @@
         .spine.blue:hover   { box-shadow: 0 30px 60px -25px rgba(96, 165, 250, 0.4); }
         .spine.orange:hover { box-shadow: 0 30px 60px -25px rgba(251, 146, 60, 0.4); }
 
-        /* ===== محتوای اسپاین ===== */
         .spine-content {
             display: flex;
             flex-direction: column;
@@ -402,7 +496,6 @@
             z-index: 2;
         }
 
-        /* حالت بسته: عمودی */
         .spine-closed {
             display: flex;
             flex-direction: column;
@@ -437,13 +530,12 @@
         .spine.blue .spine-icon   { color: var(--blue); }
         .spine.orange .spine-icon { color: var(--orange); }
 
-        /* متن عمودی */
         .spine-vertical {
             writing-mode: vertical-rl;
             text-orientation: mixed;
             font-size: 0.92rem;
             font-weight: 800;
-            color: #ffffff;
+            color: var(--text-main);
             letter-spacing: -0.2px;
             flex: 1;
             display: flex;
@@ -464,7 +556,6 @@
             white-space: nowrap;
         }
 
-        /* حالت باز: افقی */
         .spine-open {
             position: absolute;
             inset: 0;
@@ -545,7 +636,7 @@
         .spine-open-title {
             font-size: 1.15rem;
             font-weight: 900;
-            color: #ffffff;
+            color: var(--text-main);
             letter-spacing: -0.4px;
             line-height: 1.35;
         }
@@ -608,7 +699,7 @@
         .spine.blue:hover   .spine-open-arrow { background: var(--blue);   color: #000; border-color: var(--blue);   transform: translateX(-4px); }
         .spine.orange:hover .spine-open-arrow { background: var(--orange); color: #000; border-color: var(--orange); transform: translateX(-4px); }
 
-        /* ===== Drawer از سمت چپ ===== */
+        /* ===== Drawer ===== */
         .drawer-overlay {
             position: fixed;
             inset: 0;
@@ -712,7 +803,7 @@
         .drawer-title {
             font-size: 1.35rem;
             font-weight: 900;
-            color: #ffffff;
+            color: var(--text-main);
             letter-spacing: -0.5px;
             margin-bottom: 0.4rem;
         }
@@ -739,7 +830,6 @@
             border-radius: 10px;
         }
 
-        /* ===== آیتم درس داخل Drawer ===== */
         .drawer-course {
             background: var(--surface-2);
             border: 1px solid var(--border);
@@ -821,7 +911,7 @@
         .drawer-course-details h4 {
             font-size: 0.98rem;
             font-weight: 800;
-            color: #ffffff;
+            color: var(--text-main);
             margin-bottom: 0.35rem;
             letter-spacing: -0.2px;
             line-height: 1.4;
@@ -926,7 +1016,7 @@
             background: var(--surface-3);
             border-color: var(--border-hover);
             transform: translateY(-2px);
-            color: #ffffff;
+            color: var(--text-main);
         }
 
         /* ===== فوتر ===== */
@@ -968,7 +1058,7 @@
             border-radius: 50%;
             background: var(--surface-2);
             border: 1px solid var(--border);
-            color: #ffffff;
+            color: var(--text-main);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1000,6 +1090,11 @@
             .owner-info h1 { font-size: 1.8rem; }
             .avatar-wrapper { width: 80px; height: 80px; font-size: 2rem; }
             .profile-header { padding: 1.6rem 1rem 1.3rem; }
+
+            .bitmath-brand { font-size: 1.1rem; padding-right: 0.7rem; }
+            .bitmath-brand i { font-size: 0.85rem; }
+            .bitmath-scroll span { font-size: 0.95rem; }
+            .bitmath-tagline { margin: 1.2rem 0 0.4rem; padding: 0.8rem 0; gap: 0.7rem; }
 
             .header-actions { gap: 0.45rem; }
             .header-btn { font-size: 0.72rem; padding: 0.5rem 0.85rem; }
@@ -1037,7 +1132,7 @@
         <!-- Status Bar -->
         <div class="status-bar">
             <div class="status-left">
-                <span><i class="fas fa-clock"></i> آخرین به‌روزرسانی: ۱۹ شهریور ۱۴۰۵</span>
+                <span><i class="fas fa-clock"></i> آخرین به‌روزرسانی: ۲۰ شهریور ۱۴۰۵</span>
             </div>
             <div class="status-right">
                 <span><i class="fas fa-book"></i> ۸ درس</span>
@@ -1053,6 +1148,20 @@
             <div class="owner-info">
                 <h1>میلاد <span class="accent">وزان</span></h1>
                 <p class="subtitle">مدرس دوره‌های علوم کامپیوتر</p>
+            </div>
+
+            <!-- شعار متحرک bitmath -->
+            <div class="bitmath-tagline" aria-hidden="true">
+                <span class="bitmath-brand"><i class="fas fa-brain"></i>bitmath</span>
+                <div class="bitmath-scroll-wrap">
+                    <div class="bitmath-scroll">
+                        <span>
+                            Think in bits.
+                            Solve with math.
+                            <i class="fas fa-calculator"></i>
+                        </span>
+                    </div>
+                </div>
             </div>
 
             <div class="header-actions">
@@ -1083,13 +1192,11 @@
                 <!-- نیم‌سال اول ۱۴۰۶-۱۴۰۵ -->
                 <div class="spine purple" onclick="openDrawer('drawer-1')">
                     <div class="spine-content">
-                        <!-- حالت بسته -->
                         <div class="spine-closed">
                             <span class="spine-icon"><i class="fas fa-layer-group"></i></span>
                             <span class="spine-vertical">نیم‌سال اول ۱۴۰۶-۱۴۰۵</span>
                             <span class="spine-count">۳ درس</span>
                         </div>
-                        <!-- حالت باز -->
                         <div class="spine-open">
                             <div class="spine-open-top">
                                 <span class="spine-icon"><i class="fas fa-layer-group"></i></span>
